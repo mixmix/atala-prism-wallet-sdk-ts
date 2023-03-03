@@ -1,33 +1,27 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "module": "esnext",
+    "outDir": "./lib",
+    "rootDir": "./",
+    "module": "NodeNext",
     "target": "esnext",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "inlineSourceMap": false,
+    "inlineSourceMap": true,
     "lib": ["esnext"],
     "listEmittedFiles": false,
-    "listFiles": false,
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "pretty": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
+    "noEmit": false,
+    "resolveJsonModule": false,
+    "skipLibCheck": false,
     "noEmitOnError": false,
     "strict": true,
     "traceResolution": false,
-    "types": ["mocha"],
-    "typeRoots": ["./types"],
-    "paths": {}
+    "isolatedModules": true
   },
-  "compileOnSave": false,
-  "exclude": ["node_modules", "build", "rollup"],
-  "include": ["."],
-  "typeAcquisition": {
-    "enable": true,
-    "include": ["node"]
-  }
+  "compileOnSave": true,
+  "exclude": ["node_modules"],
+  "include": ["src/**/*", "tests/**/*", "testt/**/*"]
 }

@@ -1,8 +1,8 @@
 import { expect } from "chai";
 
-import { Curve } from "../../domain";
-import Apollo from "../../apollo/Apollo";
-import Castor from "../../castor/Castor";
+import { Curve } from "../../src/domain";
+import Apollo from "../../src/apollo/Apollo";
+import Castor from "../../src/castor/Castor";
 
 describe("DIDCreateTest", () => {
   it("Should correctly create a prismDID from an existing HexKey", async () => {

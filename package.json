@@ -2,32 +2,8 @@
   "name": "@input-output-hk/atala-prism-wallet-sdk",
   "version": "0.0.1",
   "description": "PRISM typescript SDK",
-  "main": "src/index.ts",
-  "exports": {
-    "./node": {
-      "require": "./build/node/cjs/index.js",
-      "import": "./build/node/es/index.js"
-    },
-    "./browser": {
-      "require": "./build/browser/cjs/index.js",
-      "import": "./build/browser/es/index.js"
-    }
-  },
-  "files": [
-    "src",
-    "node",
-    "browser",
-    "index.ts",
-    "apollo",
-    "castor",
-    "config",
-    "domain",
-    "mercury",
-    "pluto",
-    "pollux",
-    "prism-agent",
-    "peerdid"
-  ],
+  "type": "module",
+  "main": "./src/index.js",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -43,13 +19,17 @@
     "build:browser": "rm -rf build/browser/cjs && npx rollup -c rollup/browser/rollup.cjs.js",
     "build:browser-esm": "rm -rf build/browser/es && npx rollup -c rollup/browser/rollup.es.js",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' npx nyc mocha -r ts-node/register 'tests/**/*.ts'",
-    "amtlr": "./node_modules/.bin/antlr4ts ./castor/parser/DIDAbnf.g4  -long-messages  && ./node_modules/.bin/antlr4ts  -long-messages ./castor/parser/DIDUrlAbnf.g4",
+    "amtlr": "./node_modules/.bin/antlr4ts src/castor/parser/DIDAbnf.g4  -long-messages  && ./node_modules/.bin/antlr4ts  -long-messages ./castor/parser/DIDUrlAbnf.g4",
     "protos": "yarn protos:node && yarn protos:common",
-    "protos:node": "protoc -Iprotos --proto_path=castor/protos --ts_out=castor/protos  castor/protos/node_models.proto",
-    "protos:common": "protoc -Iprotos --proto_path=castor/protos --ts_out=castor/protos  castor/protos/common_models.proto",
+    "protos:node": "protoc -Iprotos --proto_path=castor/protos --ts_out=castor/protos  src/castor/protos/node_models.proto",
+    "protos:common": "protoc -Iprotos --proto_path=castor/protos --ts_out=castor/protos  src/castor/protos/common_models.proto",
     "coverage:check": "npx nyc check-coverage --lines 70 --branches 45 --functions 60 --statements 70"
   },
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.21.0",
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
@@ -63,6 +43,7 @@
     "@types/chai": "^4.3.4",
     "@types/elliptic": "^6.4.14",
     "@types/google-protobuf": "^3.15.6",
+    "@types/karma": "^6.3.3",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.14.2",
     "@types/sinon": "^10.0.13",
@@ -72,6 +53,14 @@
     "antlr4ts-cli": "^0.5.0-alpha.4",
     "chai": "^4.3.7",
     "eslint": "^8.35.0",
+    "karma": "^6.4.1",
+    "karma-babel-preprocessor": "^8.0.2",
+    "karma-chrome-launcher": "^3.1.1",
+    "karma-mocha": "^2.0.1",
+    "karma-rollup-preprocessor": "^7.0.8",
+    "karma-typescript": "^5.5.3",
+    "karma-typescript-es6-transform": "^5.5.3",
+    "karma-typescript-preprocessor": "^0.4.0",
     "mocha": "^10.2.0",
     "npm-run-all": "^4.1.5",
     "nyc": "^15.1.0",

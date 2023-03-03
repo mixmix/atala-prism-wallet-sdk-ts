@@ -1,0 +1,31 @@
+import { ATN } from "antlr4ts/atn/ATN";
+import { CharStream } from "antlr4ts/CharStream";
+import { Lexer } from "antlr4ts/Lexer";
+import { Vocabulary } from "antlr4ts/Vocabulary";
+export declare class DIDAbnfLexer extends Lexer {
+    static readonly SCHEMA = 1;
+    static readonly ALPHA = 2;
+    static readonly DIGIT = 3;
+    static readonly PCT_ENCODED = 4;
+    static readonly PERCENT = 5;
+    static readonly DASH = 6;
+    static readonly PERIOD = 7;
+    static readonly COLON = 8;
+    static readonly UNDERSCORE = 9;
+    static readonly channelNames: string[];
+    static readonly modeNames: string[];
+    static readonly ruleNames: string[];
+    private static readonly _LITERAL_NAMES;
+    private static readonly _SYMBOLIC_NAMES;
+    static readonly VOCABULARY: Vocabulary;
+    get vocabulary(): Vocabulary;
+    constructor(input: CharStream);
+    get grammarFileName(): string;
+    get ruleNames(): string[];
+    get serializedATN(): string;
+    get channelNames(): string[];
+    get modeNames(): string[];
+    static readonly _serializedATN: string;
+    static __ATN: ATN;
+    static get _ATN(): ATN;
+}

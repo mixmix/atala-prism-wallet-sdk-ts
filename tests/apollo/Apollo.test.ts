@@ -1,8 +1,8 @@
 import { expect, assert } from "chai";
-import Apollo from "../../apollo/Apollo";
-import { ECConfig } from "../../config/ECConfig";
-import { Curve, KeyPair } from "../../domain/models";
-import { MnemonicWordList } from "../../domain/models/WordList";
+import Apollo from "../../src/apollo/Apollo";
+import { ECConfig } from "../../src/config/ECConfig";
+import { Curve, KeyPair } from "../../src/domain/models";
+import { MnemonicWordList } from "../../src/domain/models/WordList";
 import { bip39Vectors } from "./derivation/BipVectors";
 
 let apollo: Apollo;
