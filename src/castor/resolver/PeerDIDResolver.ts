@@ -11,6 +11,7 @@ import {
   Numalgo2Prefix,
 } from "../../peer-did/types";
 import { base58btc } from "multiformats/bases/base58";
+import base64url from "base64url";
 
 import {
   DID,
@@ -210,7 +211,7 @@ export class PeerDIDResolver implements DIDResolver {
   public decodeService(did: DID, encodedString: string): DIDDocumentService[] {
     let jsonData: Buffer;
     try {
-      jsonData = Buffer.from(encodedString, "base64url");
+      jsonData = Buffer.from(base64url.decode(encodedString));
 
       const serviceList = JSON.parse(jsonData.toString());
       const services = (

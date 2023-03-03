@@ -12,7 +12,7 @@ module.exports = function(config) {
             "**/*.ts": ['karma-typescript']
         },
         karmaTypescriptConfig: {
-            tsconfig: './tsconfig.json'
+            tsconfig: './tsconfig-cjs.json'
         },
         reporters: ['progress'],
         port: 9876,

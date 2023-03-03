@@ -4,7 +4,6 @@ import { ParseTreeWalker } from "antlr4ts/tree/ParseTreeWalker";
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 import { InvalidDIDString } from "../../domain/models/errors/Castor";
 import { DIDUrlAbnfListener } from "./DIDUrlAbnfListener";
-import { URLSearchParams } from "url";
 
 import {
   FragContext,
@@ -42,7 +41,6 @@ class DIDUrlListener implements DIDUrlAbnfListener {
     this.scheme = ctx.SCHEMA()?.text;
   }
   exitSearch(ctx: SearchContext) {
-    console.info(">>>>>>>>", URLSearchParams, require("url"))
     const params = new URLSearchParams(ctx.text);
     for (const [key, value] of params.entries()) {
       this.query.set(key, value);

@@ -4,6 +4,7 @@ import { ECConfig } from "../../src/config/ECConfig";
 import { Curve, KeyPair } from "../../src/domain/models";
 import { MnemonicWordList } from "../../src/domain/models/WordList";
 import { bip39Vectors } from "./derivation/BipVectors";
+import { Buffer } from 'buffer'
 
 let apollo: Apollo;
 let keyPair: KeyPair;

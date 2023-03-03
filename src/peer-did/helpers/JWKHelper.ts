@@ -20,7 +20,7 @@ export class JWKHelper {
     if (crv !== "X25519") {
       throw new CastorError.InvalidJWKKeysError();
     }
-    return Buffer.from(xKey, "base64url");
+    return Buffer.from(base64url.decode(`u${xKey}`));
   }
 
   static fromJWKAuthentication(
@@ -32,7 +32,7 @@ export class JWKHelper {
     if (crv !== "Ed25519") {
       throw new CastorError.InvalidJWKKeysError();
     }
-    return Buffer.from(xKey, "base64url");
+    return Buffer.from(base64url.decode(`u${xKey}`));
   }
 
   static toJWK(publicKey: Uint8Array, material: VerificationMethodTypePeerDID) {

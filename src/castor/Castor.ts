@@ -18,6 +18,7 @@ import {
 import * as DIDParser from "./parser/DIDParser";
 import * as Protos from "./protos/node_models";
 import { SHA256 } from "@stablelib/sha256";
+import base64url from "base64url";
 
 import { PeerDIDResolver } from "./resolver/PeerDIDResolver";
 import { PeerDIDCreate } from "../peer-did/PeerDIDCreate";
@@ -78,7 +79,7 @@ export default class Castor implements CastorInterface {
       sha256.update(encodedState).digest()
     ).toString("hex");
 
-    const base64State = encodedState.toString("base64url");
+    const base64State = base64url.encode(encodedState);
 
     const methodSpecificId = new PrismDIDMethodId([stateHash, base64State]);
 

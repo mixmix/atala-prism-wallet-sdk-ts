@@ -1,4 +1,5 @@
 import { SHA256 } from "@stablelib/sha256";
+import base64url from "base64url";
 import { CastorError } from "../../domain/models/Errors";
 import Apollo from "../../domain/buildingBlocks/Apollo";
 import { LongFormPrismDID } from "../did/prismDID/LongFormPrismDID";
@@ -37,7 +38,7 @@ export class LongFormPrismDIDResolver implements DIDResolver {
     const [verificationMethods, services] = this.decodeState(
       did,
       prismDID.stateHash,
-      Buffer.from(prismDID.encodedState, "base64url")
+      Buffer.from(base64url.decode(prismDID.encodedState))
     );
     const servicesProperty = new DIDDocumentServices(services);
     const verificationMethodsProperty = new DIDDocumentVerificationMethods([
