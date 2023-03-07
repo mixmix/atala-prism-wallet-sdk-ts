@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 
-import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
 import * as prismWalletSdk from "@input-output-hk/atala-prism-wallet-sdk";
+import { QrCodeScanner } from "../../components/QrCodeScanner";
 //
 const apollo = new prismWalletSdk.Apollo();
 const castor = new prismWalletSdk.Castor(apollo);
-console.log("Apollo test:", apollo.createRandomSeed(), castor);
+// console.log("Apollo test:", apollo.createRandomSeed(), castor);
 
 export default function TabOneScreen() {
   return (
@@ -20,7 +20,12 @@ export default function TabOneScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.3)"
       />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+      <QrCodeScanner
+        buttonLabel="Scan QR Code"
+        onScan={({ data, type }) => {
+          console.log("SCANNED", type, data);
+        }}
+      />
     </View>
   );
 }
