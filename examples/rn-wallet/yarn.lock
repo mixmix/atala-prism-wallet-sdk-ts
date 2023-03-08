@@ -3918,12 +3918,13 @@ expo-asset@~8.6.3:
     path-browserify "^1.0.0"
     url-parse "^1.5.9"
 
-expo-barcode-scanner@~12.3.2:
-  version "12.3.2"
-  resolved "https://registry.yarnpkg.com/expo-barcode-scanner/-/expo-barcode-scanner-12.3.2.tgz#d0023e8c9a3a8cef769bbc2080b5c275188affe8"
-  integrity sha512-6s8r7/H2pP1sscCm4gwIaVaqOTPBn3qDbh0d27Q79Ix5/p+yPVd/hkD0GGooDLHHcdOWTweQzrlRCxOdSVh8ZQ==
+expo-barcode-scanner@~11.5.0:
+  version "11.5.0"
+  resolved "https://registry.yarnpkg.com/expo-barcode-scanner/-/expo-barcode-scanner-11.5.0.tgz#d9a3d1108654ea4a6968d66c0f9a19f6a47f9767"
+  integrity sha512-E+Grr/fjBWNzcYzWV069c0VjiqfnwSYoPrGMaCTLLJwkh8ZhPfyL8/tq+ZRaeIMEexdf5y0/Kz+A07cAHVUrDA==
   dependencies:
-    expo-image-loader "~4.1.0"
+    "@expo/config-plugins" "~5.0.0"
+    expo-image-loader "~3.2.0"
 
 expo-constants@~13.2.0, expo-constants@~13.2.2, expo-constants@~13.2.4:
   version "13.2.4"
@@ -3953,10 +3954,10 @@ expo-font@~10.2.1:
   dependencies:
     fontfaceobserver "^2.1.0"
 
-expo-image-loader@~4.1.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/expo-image-loader/-/expo-image-loader-4.1.1.tgz#efadbb17de1861106864820194900f336dd641b6"
-  integrity sha512-ciEHVokU0f6w0eTxdRxLCio6tskMsjxWIoV92+/ZD37qePUJYMfEphPhu1sruyvMBNR8/j5iyOvPFVGTfO8oxA==
+expo-image-loader@~3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/expo-image-loader/-/expo-image-loader-3.2.0.tgz#d98b021660edef7243f7c5ec011b8d0545626d41"
+  integrity sha512-LU3Q2prn64/HxdToDmxgMIRXS1ZvD9Q3iCxRVTZn1fPQNNDciIQFE5okaa74Ogx20DFHs90r6WoUd7w9Af1OGQ==
 
 expo-keep-awake@~10.2.0:
   version "10.2.1"

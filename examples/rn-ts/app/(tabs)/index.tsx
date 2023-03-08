@@ -3,10 +3,11 @@ import { StyleSheet } from "react-native";
 import { Text, View } from "../../components/Themed";
 import * as prismWalletSdk from "@input-output-hk/atala-prism-wallet-sdk";
 import { QrCodeScanner } from "../../components/QrCodeScanner";
+import crypto from 'crypto';
 import { randomBytes } from "@noble/hashes/utils";
-import * as nodeCrypto from "crypto";
 
-console.log("nodeCryptonodeCrypto", nodeCrypto);
+console.log('asdasdads', crypto);
+console.log("RANDOM", randomBytes(32));
 //
 // const apollo = new prismWalletSdk.Apollo();
 // const castor = new prismWalletSdk.Castor(apollo);
