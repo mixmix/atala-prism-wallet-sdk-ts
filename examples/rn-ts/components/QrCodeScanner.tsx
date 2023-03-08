@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, Button, Modal } from "react-native";
+import { StyleSheet, Button, Modal } from "react-native";
+import { Text, useTextThemeColor, View } from "../components/Themed";
+
 import { BarCodeScanner } from "expo-barcode-scanner";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
@@ -12,6 +14,7 @@ export function QrCodeScanner({
 }) {
   const [hasPermission, setHasPermission] = useState<null | boolean>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const color = useTextThemeColor();
 
   async function openScanner() {
     const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -33,7 +36,7 @@ export function QrCodeScanner({
   if (!isOpen) {
     return (
       <View style={styles.button}>
-        <FontAwesome size={60} name="qrcode" color="white" />
+        <FontAwesome size={60} name="qrcode" color={color} />
         <Button color={"#916eff"} title={buttonLabel} onPress={openScanner} />
       </View>
     );

@@ -85,7 +85,6 @@
     "antlr4ts": "^0.5.0-alpha.4",
     "bip32": "^2.0.6",
     "bn.js": "^5.2.1",
-    "crypto": "^1.0.1",
     "ed25519-keygen": "^0.3.0",
     "elliptic": "^6.5.4",
     "google-protobuf": "^3.21.2",

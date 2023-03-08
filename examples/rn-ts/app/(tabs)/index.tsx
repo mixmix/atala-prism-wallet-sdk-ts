@@ -3,11 +3,15 @@ import { StyleSheet } from "react-native";
 import { Text, View } from "../../components/Themed";
 import * as prismWalletSdk from "@input-output-hk/atala-prism-wallet-sdk";
 import { QrCodeScanner } from "../../components/QrCodeScanner";
-//
-const apollo = new prismWalletSdk.Apollo();
-const castor = new prismWalletSdk.Castor(apollo);
-// console.log("Apollo test:", apollo.createRandomSeed(), castor);
+import { randomBytes } from "@noble/hashes/utils";
+import * as nodeCrypto from "crypto";
 
+console.log("nodeCryptonodeCrypto", nodeCrypto);
+//
+// const apollo = new prismWalletSdk.Apollo();
+// const castor = new prismWalletSdk.Castor(apollo);
+// console.log("Apollo test:", apollo.createRandomSeed(), castor);
+console.log("RANDOM", randomBytes(32));
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>

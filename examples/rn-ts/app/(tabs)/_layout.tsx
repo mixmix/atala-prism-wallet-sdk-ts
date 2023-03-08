@@ -21,6 +21,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarStyle: { height: 55, paddingBottom: 5 },
       }}
     >
       <Tabs.Screen
@@ -50,7 +51,9 @@ export default function TabLayout() {
         options={{
           headerShown: false,
           title: "Keys",
-          tabBarIcon: ({ color }) => <TabBarIcon name="qrcode" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="unlock-alt" color={color} />
+          ),
         }}
       />
     </Tabs>
