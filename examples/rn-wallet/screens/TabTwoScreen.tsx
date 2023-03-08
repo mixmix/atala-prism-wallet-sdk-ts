@@ -2,8 +2,12 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import {useContacts} from "../hooks/useContacts";
+import * as didService from "../services/dids";
 
 export default function TabTwoScreen() {
+  let {contacts, removeContact} = useContacts();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab Two</Text>

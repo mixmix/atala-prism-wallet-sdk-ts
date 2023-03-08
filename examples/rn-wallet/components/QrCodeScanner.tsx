@@ -4,6 +4,7 @@ import { Text, useTextThemeColor, View } from "../components/Themed";
 
 import { BarCodeScanner } from "expo-barcode-scanner";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import Colors from "../constants/Colors";
 
 export function QrCodeScanner({
   buttonLabel = "Tap to Scan",
@@ -37,7 +38,11 @@ export function QrCodeScanner({
     return (
       <View style={styles.button}>
         <FontAwesome size={60} name="qrcode" color={color} />
-        <Button color={"#916eff"} title={buttonLabel} onPress={openScanner} />
+        <Button
+          color={Colors.primary}
+          title={buttonLabel}
+          onPress={openScanner}
+        />
       </View>
     );
   }

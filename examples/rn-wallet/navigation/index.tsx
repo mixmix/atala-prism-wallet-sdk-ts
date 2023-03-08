@@ -26,6 +26,7 @@ import {
   RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import DidRequestModalScreen from "../screens/DidRequestModalScreen";
 
 export default function Navigation({
   colorScheme,
@@ -63,6 +64,20 @@ function RootNavigator() {
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen
+          name="DidRequestModal"
+          component={DidRequestModalScreen}
+          options={{
+            title: "DID Request Received",
+          }}
+        />
+        <Stack.Screen
+          name="AuthChallengeModal"
+          component={ModalScreen}
+          options={{
+            title: "Authentication Challenge Received",
+          }}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );

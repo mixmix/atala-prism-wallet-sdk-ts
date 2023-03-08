@@ -16,6 +16,8 @@ declare global {
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
+  DidRequestModal: {from?: string, onboardEndpoint: string};
+  AuthChallengeModal: {from?: string, nonce: string, submissionEndpoint: string};
   NotFound: undefined;
 };
 
