@@ -7,6 +7,7 @@
 - 
 - add `Buffer` to `window`
 - local SDK dependency works with `yarn`, not with `npm`
+- add polifill for TextEncoder `fast-text-encoding`
 
 
 - npx expo start --clear 

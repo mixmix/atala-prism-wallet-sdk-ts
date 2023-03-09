@@ -25,12 +25,20 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import 'fast-text-encoding';
 import crypto from 'crypto';
 import {randomBytes} from '@noble/hashes/utils';
+import * as didService from './services/dids';
 
 // console.log('asdasdads', crypto);
 console.log('RANDOM', randomBytes(32));
 
+async function main() {
+  const {peerDID} = await didService.createPeerDid();
+  console.log('PEER', peerDID);
+}
+
+main();
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 const Section = ({children, title}): Node => {
