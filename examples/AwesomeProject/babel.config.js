@@ -5,7 +5,7 @@ module.exports = {
       'module-resolver',
       {
         alias: {
-          crypto: 'crypto-browserify',
+          crypto: 'react-native-quick-crypto',
           stream: 'stream-browserify',
           buffer: '@craftzdog/react-native-buffer',
         },
