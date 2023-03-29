@@ -8,7 +8,6 @@
   "scripts": {
     "build": "npm run build:browser && npm run build:node && npm run types",
     "types": "rm -rf build/typings && tsc",
-    "postinstall": "./scripts/typeorm-cleanup.sh",
     "build:browser": "webpack --mode=production --config webpack/webpack.browser.conf.js",
     "build:node": "webpack --mode=production --config webpack/webpack.node.conf.js",
     "dev:browser": "webpack serve --mode=development --config webpack/webpack.browser.conf.js",
@@ -145,6 +144,10 @@
     "jsonwebtoken": "^9.0.0",
     "localforage": "^1.10.0",
     "multiformats": "^9.9.0",
+    "react-native-sqlite-storage": "file:./shims/react-native-sqlite-storage",
     "typeorm": "^0.3.12"
-  }
+  },
+  "bundledDependencies": [
+    "react-native-sqlite-storage"
+  ]
 }

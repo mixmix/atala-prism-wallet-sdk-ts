@@ -1,0 +1,8 @@
+{
+  "name": "react-native-sqlite-storage",
+  "version": "0.0.1",
+  "description": "Shim",
+  "main": "index.js",
+  "author": "",
+  "license": ""
+}
