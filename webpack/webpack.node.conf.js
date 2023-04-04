@@ -58,7 +58,10 @@ module.exports = (env, argv) => {
                     test: /\.(m|j|t)s$/,
                     exclude: /(node_modules|bower_components)/,
                     use: {
-                        loader: "babel-loader",
+                        loader: "swc-loader",
+                        options: {
+                            parseMap: true
+                        }
                     },
                 },
             ],

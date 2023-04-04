@@ -1,0 +1,19 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "decorators": true
+    },
+    "transform": {
+      "legacyDecorator": true,
+//       "classProperties": {
+//         "loose": false
+//       }
+    }
+  },
+  "env": {
+    "development": {
+      "sourceMaps": "inline"
+    }
+  }
+}
