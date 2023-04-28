@@ -1,11 +1,11 @@
 import { uuid } from "@stablelib/uuid";
 
-import { AttachmentDescriptor, DID, Message } from "../../../domain";
-import { AgentError } from "../../../domain/models/Errors";
-import { ProtocolHelpers } from "../../helpers/ProtocolHelpers";
-import { ProtocolType } from "../ProtocolTypes";
-import { ProposePresentationBody } from "../types";
-import { RequestPresentation } from "./RequestPresentation";
+import { AttachmentDescriptor, DID, Message } from "domain/index.js";
+import { AgentError } from "domain/models/Errors.js";
+import { ProtocolHelpers } from "prism-agent/helpers/ProtocolHelpers.js";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
+import { ProposePresentationBody } from "prism-agent/protocols/types.js";
+import { RequestPresentation } from "prism-agent/protocols/proofPresentation/RequestPresentation.js";
 
 export class ProposePresentation {
   public static type = ProtocolType.DidcommProposePresentation;

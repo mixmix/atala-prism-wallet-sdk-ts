@@ -1,4 +1,4 @@
-import { CastorError } from "./Errors";
+import { CastorError } from "./Errors.js";
 
 export class PrismDIDMethodId {
   private value: string;

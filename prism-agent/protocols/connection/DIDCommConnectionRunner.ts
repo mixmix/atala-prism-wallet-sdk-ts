@@ -1,9 +1,7 @@
-import { DID } from "../../../domain";
-import Pluto from "../../../domain/buildingBlocks/Pluto";
-import { DIDPair } from "../../../domain/models/DIDPair";
-import { ConnectionsManager } from "../../types";
-import { OutOfBandInvitation } from "../invitation/v2/OutOfBandInvitation";
-import { HandshakeRequest } from "./HandshakeRequest";
+import { DID, DIDPair, Pluto} from "domain/index.js";
+import { ConnectionsManager } from "prism-agent/types/index.js";
+import { OutOfBandInvitation } from "../invitation/v2/OutOfBandInvitation.js";
+import { HandshakeRequest } from "./HandshakeRequest.js";
 
 export class DIDCommConnectionRunner {
   constructor(

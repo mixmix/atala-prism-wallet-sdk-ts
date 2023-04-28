@@ -1,8 +1,8 @@
 import { SHA256 } from "@stablelib/sha256";
-import { CastorError } from "../../domain/models/Errors";
-import Apollo from "../../domain/buildingBlocks/Apollo";
-import { LongFormPrismDID } from "../../castor/did/prismDID/LongFormPrismDID";
+import { LongFormPrismDID } from "../../castor/did/prismDID/LongFormPrismDID.js";
 import {
+  Apollo,
+  CastorError,
   DIDResolver,
   DIDDocument,
   VerificationMethod as DIDDocumentVerificationMethod,
@@ -15,15 +15,15 @@ import {
   Curve,
   DIDUrl,
   DIDDocumentCoreProperty,
-} from "../../domain/models";
+} from "domain/index.js";
 
-import * as DIDParser from "../parser/DIDParser";
-import * as Protos from "../../castor/protos/node_models";
+import * as DIDParser from "../parser/DIDParser.js";
+import * as Protos from "../../castor/protos/node_models.js";
 import {
   getUsage,
   getUsageId,
   PrismDIDPublicKey,
-} from "../../castor/did/prismDID/PrismDIDPublicKey";
+} from "../../castor/did/prismDID/PrismDIDPublicKey.js";
 import * as base64 from "multiformats/bases/base64";
 import * as base58 from "multiformats/bases/base58";
 

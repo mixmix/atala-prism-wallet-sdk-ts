@@ -1,13 +1,12 @@
 import { base64url } from "multiformats/bases/base64";
-
-import { CastorError } from "../../domain/models/Errors";
+import { CastorError } from "domain/index.js";
 import {
   VerificationMaterialAgreement,
   VerificationMaterialAuthentication,
   VerificationMethodTypeAgreement,
   VerificationMethodTypeAuthentication,
   VerificationMethodTypePeerDID,
-} from "../types";
+} from "../types.js";
 
 export type VerificationMaterial =
   | VerificationMaterialAgreement

@@ -1,18 +1,18 @@
-// Generated from ./castor/parser/DIDUrlAbnf.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from castor/parser/DIDUrlAbnf.g4 by ANTLR 4.9.0-SNAPSHOT
 
 
-import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
+import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener.js";
 
-import { Did_urlContext } from "./DIDUrlAbnfParser";
-import { DidContext } from "./DIDUrlAbnfParser";
-import { Method_nameContext } from "./DIDUrlAbnfParser";
-import { Method_specific_idContext } from "./DIDUrlAbnfParser";
-import { PathContext } from "./DIDUrlAbnfParser";
-import { QueryContext } from "./DIDUrlAbnfParser";
-import { FragContext } from "./DIDUrlAbnfParser";
-import { SearchContext } from "./DIDUrlAbnfParser";
-import { SearchparameterContext } from "./DIDUrlAbnfParser";
-import { StringContext } from "./DIDUrlAbnfParser";
+import { Did_urlContext } from "./DIDUrlAbnfParser.js";
+import { DidContext } from "./DIDUrlAbnfParser.js";
+import { Method_nameContext } from "./DIDUrlAbnfParser.js";
+import { Method_specific_idContext } from "./DIDUrlAbnfParser.js";
+import { PathContext } from "./DIDUrlAbnfParser.js";
+import { QueryContext } from "./DIDUrlAbnfParser.js";
+import { FragContext } from "./DIDUrlAbnfParser.js";
+import { SearchContext } from "./DIDUrlAbnfParser.js";
+import { SearchparameterContext } from "./DIDUrlAbnfParser.js";
+import { StringContext } from "./DIDUrlAbnfParser.js";
 
 
 /**

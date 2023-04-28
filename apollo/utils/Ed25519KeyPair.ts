@@ -1,9 +1,9 @@
-import elliptic from "elliptic";
+const elliptic = require("elliptic");
 import { base64url } from "multiformats/bases/base64";
 
-import { Ed25519KeyCommon } from "./Ed25519KeyCommon";
-import { Ed25519PrivateKey } from "./Ed25519PrivateKey";
-import { Ed25519PublicKey } from "./Ed25519PublicKey";
+import { Ed25519KeyCommon } from "./Ed25519KeyCommon.js";
+import { Ed25519PrivateKey } from "./Ed25519PrivateKey.js";
+import { Ed25519PublicKey } from "./Ed25519PublicKey.js";
 
 export class Ed25519KeyPair extends Ed25519KeyCommon {
   private privateKey: Ed25519PrivateKey;

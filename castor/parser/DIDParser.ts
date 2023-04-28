@@ -1,17 +1,16 @@
-import { DID } from "../../domain";
-import { DIDAbnfLexer } from "./DIDAbnfLexer";
+import { DID } from "domain/index.js";
+import { DIDAbnfLexer } from "castor/parser/DIDAbnfLexer.js";
 import { CharStreams, CommonTokenStream } from "antlr4ts";
 import {
   DIDAbnfParser,
   DidContext,
   Method_nameContext,
   Method_specific_idContext,
-} from "./DIDAbnfParser";
-import { DIDAbnfListener } from "./DIDAbnfListener";
-import { ParseTreeWalker } from "antlr4ts/tree/ParseTreeWalker";
-import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
-import { InvalidDIDString } from "../../domain/models/errors/Castor";
-import { ErrorStrategy } from "./ErrorStrategy";
+} from "./DIDAbnfParser.js";
+import { DIDAbnfListener } from "castor/parser/DIDAbnfListener.js";
+import { ParseTreeListener, ParseTreeWalker } from "antlr4ts/tree/index.js";
+import { InvalidDIDString } from "domain/models/errors/Castor.js";
+import { ErrorStrategy } from "castor/parser/ErrorStrategy.js";
 
 class DIDListener implements DIDAbnfListener {
   public scheme?: string;

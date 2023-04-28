@@ -1,30 +1,31 @@
-import { JWT } from "../apollo/utils/jwt/JWT";
+import { JWT } from "apollo/utils/jwt/JWT.js";
 import {
+  Apollo,
+  Castor,
+  Pluto,
+  Pollux,
+  AgentError,
   AttachmentBase64,
   AttachmentDescriptor,
   AttachmentJsonData,
   Curve,
   Seed,
-} from "../domain";
-import Apollo from "../domain/buildingBlocks/Apollo";
-import Castor from "../domain/buildingBlocks/Castor";
-import Pluto from "../domain/buildingBlocks/Pluto";
-import { VerifiableCredential } from "../domain/models/VerifiableCredential";
-import { OfferCredential } from "./protocols/issueCredential/OfferCredential";
+  VerifiableCredential
+} from "domain/index.js";
+import { OfferCredential } from "./protocols/issueCredential/OfferCredential.js";
 import {
   createRequestCredentialBody,
   RequestCredential,
-} from "./protocols/issueCredential/RequestCredential";
-import { AgentCredentials as AgentCredentialsClass } from "./types";
+} from "./protocols/issueCredential/RequestCredential.js";
+import { AgentCredentials as AgentCredentialsClass } from "./types/index.js";
 import { base64, base64url } from "multiformats/bases/base64";
-import { IssueCredential } from "./protocols/issueCredential/IssueCredential";
-import Pollux from "../domain/buildingBlocks/Pollux";
+import { IssueCredential } from "./protocols/issueCredential/IssueCredential.js";
 import {
   createPresentationBody,
   Presentation,
-} from "./protocols/proofPresentation/Presentation";
-import { RequestPresentation } from "./protocols/proofPresentation/RequestPresentation";
-import { AgentError } from "../domain/models/Errors";
+} from "./protocols/proofPresentation/Presentation.js";
+import { RequestPresentation } from "./protocols/proofPresentation/RequestPresentation.js";
+
 export class AgentCredentials implements AgentCredentialsClass {
   constructor(
     protected apollo: Apollo,

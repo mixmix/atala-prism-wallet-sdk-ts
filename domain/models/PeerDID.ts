@@ -1,5 +1,5 @@
-import { DID } from ".";
-import { PrivateKey } from "./PrivateKey";
+import { DID } from "./index.js";
+import { PrivateKey } from "./PrivateKey.js";
 
 export class PeerDID {
   constructor(

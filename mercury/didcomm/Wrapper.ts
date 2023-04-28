@@ -7,14 +7,13 @@ import {
   Attachment,
   AttachmentData,
 } from "didcomm";
-import * as Domain from "../../domain";
-import Apollo from "../../apollo/Apollo";
-import Castor from "../../castor/Castor";
-import Pluto from "../../pluto/Pluto";
-import { DIDCommDIDResolver } from "./DIDResolver";
-import { DIDCommSecretsResolver } from "./SecretsResolver";
-import { DIDCommProtocol } from "../DIDCommProtocol";
-import { MercuryError } from "../../domain/models/Errors";
+import * as Domain from "domain/index.js";
+import Apollo from "apollo/Apollo.js";
+import Castor from "castor/Castor.js";
+import Pluto from "pluto/Pluto.js";
+import { DIDCommDIDResolver } from "./DIDResolver.js";
+import { DIDCommSecretsResolver } from "./SecretsResolver.js";
+import { DIDCommProtocol } from "../DIDCommProtocol.js";
 
 export class DIDCommWrapper implements DIDCommProtocol {
   public static didcomm: typeof import("didcomm");
@@ -140,7 +139,7 @@ export class DIDCommWrapper implements DIDCommProtocol {
     attachment: Attachment
   ): Domain.AttachmentDescriptor {
     if (typeof attachment.id !== "string" || attachment.id.length === 0)
-      throw new MercuryError.MessageAttachmentWithoutIDError();
+      throw new Domain.MercuryError.MessageAttachmentWithoutIDError();
 
     return {
       id: attachment.id,
@@ -182,7 +181,7 @@ export class DIDCommWrapper implements DIDCommProtocol {
       return parsed;
     }
 
-    throw new MercuryError.UnknownAttachmentDataError();
+    throw new Domain.MercuryError.UnknownAttachmentDataError();
   }
 
   private parseAttachments(
@@ -241,6 +240,6 @@ export class DIDCommWrapper implements DIDCommProtocol {
       return parsed;
     }
 
-    throw new MercuryError.UnknownAttachmentDataError();
+    throw new Domain.MercuryError.UnknownAttachmentDataError();
   }
 }

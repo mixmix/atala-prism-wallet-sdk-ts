@@ -1,12 +1,11 @@
-import BN from "bn.js";
 import * as elliptic from "elliptic";
-import BigInteger from "bn.js";
+import { BN } from "bn.js";
 
-import { ECConfig } from "../../config/ECConfig";
-import { ECCoordinate } from "./ec/ECCoordinate";
-import { ECPoint } from "./ec/ECPoint";
-import { ApolloError } from "../../domain/models/Errors";
-import { Secp256k1KeyCommon } from "./Secp256k1KeyCommon";
+import { ECConfig } from "../../config/ECConfig.js";
+import { ECCoordinate } from "./ec/ECCoordinate.js";
+import { ECPoint } from "./ec/ECPoint.js";
+import { ApolloError } from "../../domain/models/Errors.js";
+import { Secp256k1KeyCommon } from "./Secp256k1KeyCommon.js";
 
 abstract class Secp256k1PublicKeyCommon {
   abstract getEncodedCompressed(): Uint8Array;
@@ -102,8 +101,8 @@ export class Secp256k1PublicKey
         `Expected y coordinate byte length to be less than or equal ${ECConfig.PUBLIC_KEY_COORDINATE_BYTE_SIZE}, but got ${yTrimmed.length} bytes`
       );
     }
-    const xInteger = new BN(xTrimmed);
-    const yInteger = new BN(yTrimmed);
+    const xInteger = new BN(xTrimmed).toBuffer();
+    const yInteger = new BN(yTrimmed).toBuffer();
     return this.secp256k1FromBigIntegerCoordinates(xInteger, yInteger);
   }
 
@@ -111,8 +110,8 @@ export class Secp256k1PublicKey
     x: BigInteger,
     y: BigInteger
   ): Secp256k1PublicKey {
-    const xCoord = Buffer.from(x.toArray());
-    const yCoord = Buffer.from(y.toArray());
+    const xCoord = Buffer.from(x);
+    const yCoord = Buffer.from(y);
     const keyPair = this.ec.keyFromPublic({
       x: xCoord.toString("hex"),
       y: yCoord.toString("hex"),

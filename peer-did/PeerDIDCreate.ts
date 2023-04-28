@@ -1,16 +1,16 @@
 import * as base64 from "multiformats/bases/base64";
 
 import {
+  CastorError,
   Curve,
   DID,
   KeyPair,
   Service as DIDDocumentService,
-} from "../domain/models";
+} from "../domain/index.js";
 
-import { CastorError } from "../domain/models/Errors";
-import { JWKHelper, VerificationMaterial } from "./helpers/JWKHelper";
-import { MultiCodec } from "./helpers/Multicodec";
-import { PeerDID, PeerDIDService } from "./PeerDID";
+import { JWKHelper, VerificationMaterial } from "./helpers/JWKHelper.js";
+import { MultiCodec } from "./helpers/Multicodec.js";
+import { PeerDID, PeerDIDService } from "./PeerDID.js";
 import {
   Numalgo2Prefix,
   OctetPublicKey,
@@ -19,7 +19,7 @@ import {
   VerificationMaterialFormatPeerDID,
   VerificationMethodTypeAgreement,
   VerificationMethodTypeAuthentication,
-} from "./types";
+} from "./types.js";
 
 import { base58btc } from "multiformats/bases/base58";
 

@@ -1,8 +1,8 @@
-import { AgentError } from "../../../../domain/models/Errors";
-import { ProtocolType } from "../../ProtocolTypes";
-import { OutOfBandInvitationBody } from "../../types";
-import { OutOfBandInvitation } from "./OutOfBandInvitation";
-import { OutOfBandParser } from "./OutOfBandParser";
+import { AgentError } from "domain/index.js";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
+import { OutOfBandInvitationBody } from "prism-agent/protocols/types.js";
+import { OutOfBandInvitation } from "./OutOfBandInvitation.js";
+import { OutOfBandParser } from "./OutOfBandParser.js";
 
 export class DIDCommInvitationRunner {
   constructor(private url: URL) {}

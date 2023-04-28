@@ -1,11 +1,10 @@
 import { uuid } from "@stablelib/uuid";
 
-import { AttachmentDescriptor, DID, Message } from "../../../domain";
-import { AgentError } from "../../../domain/models/Errors";
-import { ProtocolHelpers } from "../../helpers/ProtocolHelpers";
-import { ProtocolType } from "../ProtocolTypes";
-import { PresentationBody } from "../types";
-import { RequestPresentation } from "./RequestPresentation";
+import { AgentError, AttachmentDescriptor, DID, Message } from "domain/index.js";
+import { ProtocolHelpers } from "../../helpers/ProtocolHelpers.js";
+import { ProtocolType } from "../ProtocolTypes.js";
+import { PresentationBody } from "../types.js";
+import { RequestPresentation } from "./RequestPresentation.js";
 
 export class Presentation {
   public static type = ProtocolType.DidcommPresentation;

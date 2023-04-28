@@ -1,5 +1,5 @@
 import BN from "bn.js";
-import { ECCoordinate } from "./ECCoordinate";
+import { ECCoordinate } from "./ECCoordinate.js";
 
 export class ECPoint {
   constructor(public x: ECCoordinate, public y: ECCoordinate) {}

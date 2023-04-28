@@ -1,5 +1,5 @@
 import { uuid } from "@stablelib/uuid";
-import { AttachmentDescriptor, DID, Message } from "../../domain";
+import { AttachmentDescriptor, DID, Message } from "domain/index.js";
 
 export interface ForwardMessageBody {
   next: string;

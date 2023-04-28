@@ -1,18 +1,19 @@
-import Apollo from "../domain/buildingBlocks/Apollo";
 import {
+  AgentError,
+  Apollo,
+  Castor,
+  Pluto,
+  Mercury,
   DID,
   Message,
   Seed,
   Service as DIDDocumentService,
   Signature,
-} from "../domain";
-import Castor from "../domain/buildingBlocks/Castor";
-import Pluto from "../domain/buildingBlocks/Pluto";
-import Mercury from "../domain/buildingBlocks/Mercury";
-import { Api } from "../domain/models/Api";
-import { ApiImpl } from "./helpers/ApiImpl";
+  VerifiableCredential
+} from "domain/index.js";
+import { Api } from "../domain/models/Api.js";
+import { ApiImpl } from "./helpers/ApiImpl.js";
 
-import { AgentError } from "../domain/models/Errors";
 import {
   AgentCredentials as AgentCredentialsClass,
   AgentDIDHigherFunctions as AgentDIDHigherFunctionsClass,
@@ -22,19 +23,18 @@ import {
   ListenerKey,
   MediatorHandler,
   PrismOnboardingInvitation,
-} from "./types";
-import { OutOfBandInvitation } from "./protocols/invitation/v2/OutOfBandInvitation";
-import { VerifiableCredential } from "../domain/models/VerifiableCredential";
-import { AgentCredentials } from "./Agent.Credentials";
-import { AgentDIDHigherFunctions } from "./Agent.DIDHigherFunctions";
-import { AgentInvitations } from "./Agent.Invitations";
-import { ConnectionsManager } from "./connectionsManager/ConnectionsManager";
-import { OfferCredential } from "./protocols/issueCredential/OfferCredential";
-import { RequestCredential } from "./protocols/issueCredential/RequestCredential";
-import Pollux from "../pollux/Pollux";
-import { IssueCredential } from "./protocols/issueCredential/IssueCredential";
-import { Presentation } from "./protocols/proofPresentation/Presentation";
-import { RequestPresentation } from "./protocols/proofPresentation/RequestPresentation";
+} from "./types/index.js";
+import { OutOfBandInvitation } from "./protocols/invitation/v2/OutOfBandInvitation.js";
+import { AgentCredentials } from "./Agent.Credentials.js";
+import { AgentDIDHigherFunctions } from "./Agent.DIDHigherFunctions.js";
+import { AgentInvitations } from "./Agent.Invitations.js";
+import { ConnectionsManager } from "./connectionsManager/ConnectionsManager.js";
+import { OfferCredential } from "./protocols/issueCredential/OfferCredential.js";
+import { RequestCredential } from "./protocols/issueCredential/RequestCredential.js";
+import Pollux from "pollux/Pollux.js";
+import { IssueCredential } from "./protocols/issueCredential/IssueCredential.js";
+import { Presentation } from "./protocols/proofPresentation/Presentation.js";
+import { RequestPresentation } from "./protocols/proofPresentation/RequestPresentation.js";
 
 enum AgentState {
   STOPPED = "stopped",

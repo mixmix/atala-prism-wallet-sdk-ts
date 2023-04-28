@@ -1,6 +1,6 @@
-import { DID, Message } from "../../../domain";
-import { ProtocolType } from "../ProtocolTypes";
-import { PickupReceivedBody } from "../types";
+import { DID, Message } from "domain/index.js";
+import { ProtocolType } from "../ProtocolTypes.js";
+import { PickupReceivedBody } from "../types.js";
 
 export class PickupReceived {
   public static type = ProtocolType.PickupReceived;

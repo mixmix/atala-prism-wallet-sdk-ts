@@ -1,5 +1,4 @@
-import { DID } from "../domain/models/DID";
-import { CastorError } from "../domain/models/Errors";
+import { CastorError, DID } from "../domain/index.js";
 
 export interface PeerDIDEncoded {
   t: string;

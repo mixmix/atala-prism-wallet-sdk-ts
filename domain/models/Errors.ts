@@ -1,8 +1,8 @@
-export * as AgentError from "./errors/Agent";
-export * as ApolloError from "./errors/Apollo";
-export * as CastorError from "./errors/Castor";
-export * as CommonError from "./errors/Common";
-export * as MercuryError from "./errors/Mercury";
-export * as PlutoError from "./errors/Pluto";
-export * as PolluxError from "./errors/Pollux";
-export * as ApiError from "./errors/Api";
+export * as AgentError from "./errors/Agent.js";
+export * as ApolloError from "./errors/Apollo.js";
+export * as CastorError from "./errors/Castor.js";
+export * as CommonError from "./errors/Common.js";
+export * as MercuryError from "./errors/Mercury.js";
+export * as PlutoError from "./errors/Pluto.js";
+export * as PolluxError from "./errors/Pollux.js";
+export * as ApiError from "./errors/Api.js";

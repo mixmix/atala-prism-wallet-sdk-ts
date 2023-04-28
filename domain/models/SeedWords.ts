@@ -1,5 +1,5 @@
-import { Seed } from './Seed';
-import { MnemonicWordList } from './WordList';
+import { Seed } from "./Seed.js";
+import { MnemonicWordList } from "./WordList.js";
 
 export interface SeedWords {
   mnemonics: MnemonicWordList;

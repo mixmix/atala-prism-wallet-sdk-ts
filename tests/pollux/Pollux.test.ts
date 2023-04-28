@@ -1,9 +1,7 @@
 import {expect} from "chai";
-import {CredentialType, DID, VerifiableCredential} from "../../domain";
-import Castor from "../../castor/Castor";
-import Apollo from "../../domain/buildingBlocks/Apollo";
-import {InvalidJWTString,} from "../../domain/models/errors/Pollux";
-import Pollux from "../../pollux/Pollux";
+import {Apollo, InvalidJWTString, CredentialType, DID, VerifiableCredential} from "domain/index.js";
+import Castor from "castor/Castor.js";
+import Pollux from "pollux/Pollux.js";
 
 const jwtParts = [
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",

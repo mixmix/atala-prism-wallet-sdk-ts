@@ -1,4 +1,4 @@
-import { DID } from "./DID";
+import { DID } from "./DID.js";
 
 export class DIDUrl {
   did: DID;

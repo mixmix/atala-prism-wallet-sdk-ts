@@ -1,15 +1,12 @@
-import BN from "bn.js";
+import * as BN from "bn.js";
 import { expect, assert } from "chai";
 
-import { Secp256k1KeyPair } from "../../apollo/utils/Secp256k1KeyPair";
-
-import Apollo from "../../apollo/Apollo";
-import { ECConfig } from "../../config/ECConfig";
-import { Curve } from "../../domain/models";
-import { MnemonicWordList } from "../../domain/models/WordList";
-import { bip39Vectors } from "./derivation/BipVectors";
-import { Secp256k1PrivateKey } from "../../apollo/utils/Secp256k1PrivateKey";
-import { ApolloError } from "../../domain/models/Errors";
+import { Secp256k1KeyPair } from "apollo/utils/Secp256k1KeyPair.js";
+import Apollo from "apollo/Apollo.js";
+import { ECConfig } from "config/ECConfig.js";
+import { Curve, ApolloError, MnemonicWordList } from "domain/index.js";
+import { bip39Vectors } from "./derivation/BipVectors.js";
+import { Secp256k1PrivateKey } from "apollo/utils/Secp256k1PrivateKey.js";
 
 let apollo: Apollo;
 
@@ -110,7 +107,7 @@ describe("Apollo Tests", () => {
   it("Should create a private key from encoded", () => {
     const keyPair = Secp256k1KeyPair.generateSecp256k1KeyPair();
     const encodedPrivateKey = keyPair.privateKey.getEncoded();
-    const d = new BN(encodedPrivateKey);
+    const d = new BN.BN(encodedPrivateKey);
 
     const newFromBytes =
       Secp256k1PrivateKey.secp256k1FromBytes(encodedPrivateKey);

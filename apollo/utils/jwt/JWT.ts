@@ -1,14 +1,13 @@
 import * as didJWT from "did-jwt";
-
-import Castor from "../../../domain/buildingBlocks/Castor";
 import { DIDResolutionResult } from "did-resolver";
 import {
   AlsoKnownAs,
+  Castor,
   Controller,
   Services,
   VerificationMethods,
   DID,
-} from "../../../domain";
+} from "domain/index.js";
 
 export class JWT {
   private castor: Castor;

@@ -1,10 +1,10 @@
-import { DID } from "./DID";
+import { DID } from "./DID.js";
 import {
   CredentialSubject,
   CredentialType,
   VerifiableCredential,
   VerifiableCredentialTypeContainer,
-} from "./VerifiableCredential";
+} from "./VerifiableCredential.js";
 
 export class JWTVerifiableCredential {
   constructor(

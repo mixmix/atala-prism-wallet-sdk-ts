@@ -7,10 +7,10 @@ import {
   Seed,
   SeedWords,
   Signature,
-} from "../models";
-import { MnemonicWordList } from "../models/WordList";
+} from "../models/index.js";
+import { MnemonicWordList } from "../models/WordList.js";
 
-export default interface Apollo {
+export interface Apollo {
   createRandomMnemonics(): MnemonicWordList;
   createSeed(mnemonics: MnemonicWordList, passphrase: string): Seed;
   createRandomSeed(passphrase?: string): SeedWords;

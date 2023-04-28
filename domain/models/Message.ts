@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { DID } from "./DID";
-import { v4 as uuidv4 } from "uuid";
 import {
   AttachmentBase64,
   AttachmentDescriptor,
   AttachmentJsonData,
-} from "./MessageAttachment";
-import { AgentError } from "./Errors";
-import { JsonString } from ".";
+  DID,
+  JsonString
+} from "domain/index.js";
+import { v4 as uuidv4 } from "uuid";
+import { AgentError } from "domain/models/Errors.js";
 
 export enum MessageDirection {
   SENT = 0,

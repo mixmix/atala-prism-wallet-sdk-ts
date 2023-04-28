@@ -1,5 +1,5 @@
-import { VerifiableCredential } from "../models/VerifiableCredential";
+import { VerifiableCredential } from "../models/VerifiableCredential.js";
 
-export default interface Pollux {
+export interface Pollux {
   parseVerifiableCredential: (jwtString: string) => VerifiableCredential;
 }

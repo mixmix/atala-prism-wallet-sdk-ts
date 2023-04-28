@@ -1,5 +1,5 @@
 import { base64 } from "multiformats/bases/base64";
-import { AgentError } from "../../../../domain/models/Errors";
+import { AgentError } from "domain/index.js";
 
 export class OutOfBandParser {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,13 +1,13 @@
-import {DID, PrivateKey} from "../models";
-import {DIDPair} from "../models/DIDPair";
-import {Mediator} from "../models/Mediator";
-import {Message} from "../models/Message";
-import {PeerDID} from "../models/PeerDID";
-import {PrismDIDInfo} from "../models/PrismDIDInfo";
-import {VerifiableCredential} from "../models/VerifiableCredential";
+import {DID, PrivateKey} from "../models/index.js";
+import {DIDPair} from "../models/DIDPair.js";
+import {Mediator} from "../models/Mediator.js";
+import {Message} from "../models/Message.js";
+import {PeerDID} from "../models/PeerDID.js";
+import {PrismDIDInfo} from "../models/PrismDIDInfo.js";
+import {VerifiableCredential} from "../models/VerifiableCredential.js";
 
 
-export default interface Pluto {
+export interface Pluto {
   start(): Promise<void>;
 
   storePrismDID(did: DID, keyPathIndex: number, privateKey: PrivateKey, privateKeyMetaId: string | null, alias?: string): Promise<void>;

@@ -2,7 +2,7 @@ import {
   AgentMessageEvents as AgentMessageEventsClass,
   EventCallback,
   ListenerKey,
-} from "./types";
+} from "./types/index.js";
 
 export class AgentMessageEvents implements AgentMessageEventsClass {
   private events: Map<ListenerKey, Set<EventCallback>> = new Map();

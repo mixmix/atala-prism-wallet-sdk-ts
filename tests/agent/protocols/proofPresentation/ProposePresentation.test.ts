@@ -1,9 +1,8 @@
 import { expect } from "chai";
-import { Message } from "../../../../domain";
-import { AgentError } from "../../../../domain/models/Errors";
-import { ProposePresentation } from "../../../../prism-agent/protocols/proofPresentation/ProposePresentation";
-import { RequestPresentation } from "../../../../prism-agent/protocols/proofPresentation/RequestPresentation";
-import { DIDTest } from "../../helpers/DID";
+import { Message, AgentError } from "domain/index.js";
+import { ProposePresentation } from "prism-agent/protocols/proofPresentation/ProposePresentation.js";
+import { RequestPresentation } from "prism-agent/protocols/proofPresentation/RequestPresentation.js";
+import { DIDTest } from "../../helpers/DID.js";
 
 describe("ProofPresentation->ProposePresentation Tests", () => {
   it("Should create a ProposePresentation from a valid ProposePresentationMessage", async () => {

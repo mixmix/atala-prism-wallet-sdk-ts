@@ -1,9 +1,9 @@
 import { BIP32Interface } from "bip32";
-import { Secp256k1KeyPair } from "../Secp256k1KeyPair";
-import { Secp256k1PrivateKey } from "../Secp256k1PrivateKey";
-import { Secp256k1PublicKey } from "../Secp256k1PublicKey";
-import { DerivationAxis } from "./DerivationAxis";
-import { DerivationPath } from "./DerivationPath";
+import { Secp256k1KeyPair } from "../Secp256k1KeyPair.js";
+import { Secp256k1PrivateKey } from "../Secp256k1PrivateKey.js";
+import { Secp256k1PublicKey } from "../Secp256k1PublicKey.js";
+import { DerivationAxis } from "./DerivationAxis.js";
+import { DerivationPath } from "./DerivationPath.js";
 
 export class ExtendedKey {
   constructor(private bip32: BIP32Interface, private path: DerivationPath) {}

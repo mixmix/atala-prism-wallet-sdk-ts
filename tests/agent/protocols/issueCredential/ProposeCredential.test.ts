@@ -1,13 +1,12 @@
 import { expect, assert } from "chai";
-import { Message } from "../../../../domain";
-import { AgentError } from "../../../../domain/models/Errors";
+import { Message, AgentError } from "domain/index.js";
 
 import {
   createProposeCredentialBody,
   ProposeCredential,
-} from "../../../../prism-agent/protocols/issueCredential/ProposeCredential";
-import { ProtocolType } from "../../../../prism-agent/protocols/ProtocolTypes";
-import { DIDTest } from "../../helpers/DID";
+} from "prism-agent/protocols/issueCredential/ProposeCredential.js";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
+import { DIDTest } from "../../helpers/DID.js";
 
 describe("ProposeCredential", () => {
   it("Should create a valid ProposeCredential from a correct ProposeMessage", () => {

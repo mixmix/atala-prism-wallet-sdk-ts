@@ -1,10 +1,10 @@
 import { expect } from "chai";
-import { Message } from "../../../../domain";
+import { Message } from "domain/index.js";
 
-import { HandshakeRequest } from "../../../../prism-agent/protocols/connection/HandshakeRequest";
-import { ProtocolType } from "../../../../prism-agent/protocols/ProtocolTypes";
-import { HandshakeRequestBody } from "../../../../prism-agent/protocols/types";
-import { DIDTest } from "../../helpers/DID";
+import { HandshakeRequest } from "prism-agent/protocols/connection/HandshakeRequest.js";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
+import { HandshakeRequestBody } from "prism-agent/protocols/types.js";
+import { DIDTest } from "../../helpers/DID.js";
 
 describe("HandShakeRequest Test", () => {
   it("Should create a HandshakeRequest from a valid HandShakeRequest Message", () => {

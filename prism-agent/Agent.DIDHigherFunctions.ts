@@ -1,20 +1,20 @@
 import {
+  Apollo,
+  Castor,
+  Pluto,
+  AgentError,
   Curve,
   DID,
   Seed,
   Service,
   ServiceEndpoint,
   Signature,
-} from "../domain";
-import Apollo from "../domain/buildingBlocks/Apollo";
-import Castor from "../domain/buildingBlocks/Castor";
-import Pluto from "../domain/buildingBlocks/Pluto";
-import { AgentError } from "../domain/models/Errors";
+} from "domain/index.js";
 import {
   AgentDIDHigherFunctions as AgentDIDHigherFunctionsClass,
   ConnectionsManager,
   MediatorHandler,
-} from "./types";
+} from "./types/index.js";
 
 export class AgentDIDHigherFunctions implements AgentDIDHigherFunctionsClass {
   constructor(

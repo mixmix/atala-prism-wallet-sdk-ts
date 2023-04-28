@@ -1,14 +1,14 @@
-import Pluto from "../../pluto/Pluto";
+import Pluto from "pluto/Pluto.js";
 import {
   Curve,
   DID,
   getKeyCurveByNameAndIndex,
   PrivateKey,
-} from "../../domain";
+  MessageDirection,
+  CredentialType
+} from "domain/index.js";
 import { expect } from "chai";
 import { randomUUID } from "crypto";
-import { MessageDirection } from "../../domain";
-import { CredentialType } from "../../domain";
 
 describe("Pluto tests", () => {
   let instance: Pluto

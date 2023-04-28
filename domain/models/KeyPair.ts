@@ -1,6 +1,6 @@
-import { KeyCurve } from "./KeyCurve";
-import { PrivateKey } from "./PrivateKey";
-import { PublicKey } from "./PublicKey";
+import { KeyCurve } from "./KeyCurve.js";
+import { PrivateKey } from "./PrivateKey.js";
+import { PublicKey } from "./PublicKey.js";
 
 export interface KeyPair {
   keyCurve: KeyCurve;

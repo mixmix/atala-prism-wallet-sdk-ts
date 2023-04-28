@@ -1,4 +1,4 @@
-import { DerivationAxis } from "./DerivationAxis";
+import { DerivationAxis } from "./DerivationAxis.js";
 
 export class DerivationPath {
   axes: DerivationAxis[];

@@ -1,24 +1,24 @@
-import { OutOfBandInvitation } from "./protocols/invitation/v2/OutOfBandInvitation";
+import { OutOfBandInvitation } from "./protocols/invitation/v2/OutOfBandInvitation.js";
 import {
   AgentDIDHigherFunctions,
   AgentInvitations as AgentInvitationsClass,
   InvitationType,
   PrismOnboardingInvitation,
-} from "./types";
+} from "./types/index.js";
 import {
+  AgentError,
+  Pluto,
   Service as DIDDocumentService,
   ServiceEndpoint as DIDDocumentServiceEndpoint,
-} from "../domain";
-import { AgentError } from "../domain/models/Errors";
+} from "domain/index.js";
 import {
   findProtocolTypeByValue,
   ProtocolType,
-} from "./protocols/ProtocolTypes";
-import { Api } from "../domain/models/Api";
-import { ConnectionsManager } from "./connectionsManager/ConnectionsManager";
-import { DIDCommConnectionRunner } from "./protocols/connection/DIDCommConnectionRunner";
-import Pluto from "../domain/buildingBlocks/Pluto";
-import { DIDCommInvitationRunner } from "./protocols/invitation/v2/DIDCommInvitationRunner";
+} from "./protocols/ProtocolTypes.js";
+import { Api } from "../domain/models/Api.js";
+import { ConnectionsManager } from "./connectionsManager/ConnectionsManager.js";
+import { DIDCommConnectionRunner } from "./protocols/connection/DIDCommConnectionRunner.js";
+import { DIDCommInvitationRunner } from "./protocols/invitation/v2/DIDCommInvitationRunner.js";
 
 export class AgentInvitations implements AgentInvitationsClass {
   constructor(

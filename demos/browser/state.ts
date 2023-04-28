@@ -1,6 +1,6 @@
 import { atom } from "jotai";
-import { Domain } from "../../";
+import { MnemonicWordList } from "domain/index.js";
 
-export const mnemonicsAtom = atom<Domain.MnemonicWordList | undefined>(
+export const mnemonicsAtom = atom<MnemonicWordList | undefined>(
   undefined
 );

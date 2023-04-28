@@ -1,7 +1,7 @@
 import {
   VerificationMaterialAgreement,
   VerificationMaterialAuthentication,
-} from "../../peer-did/types";
+} from "../../peer-did/types.js";
 
 export type PeerDIDKeys = {
   signingKeys: VerificationMaterialAuthentication[];

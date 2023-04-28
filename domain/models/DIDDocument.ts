@@ -1,6 +1,6 @@
-import { DID } from "./DID";
-import { CastorError } from "./Errors";
-import { Curve } from "./KeyCurve";
+import { DID } from "./DID.js";
+import { CastorError } from "./Errors.js";
+import { Curve } from "./KeyCurve.js";
 
 export class ServiceEndpoint {
   constructor(

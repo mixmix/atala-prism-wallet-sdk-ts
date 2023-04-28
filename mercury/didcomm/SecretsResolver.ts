@@ -1,17 +1,24 @@
-import { Secret, SecretsResolver } from "didcomm";
-import * as Domain from "../../domain";
-import { Curve, VerificationMethod, VerificationMethods } from "../../domain";
-import Apollo from "../../apollo/Apollo";
-import Castor from "../../castor/Castor";
-import Pluto from "../../pluto/Pluto";
-import * as DIDURLParser from "../../castor/parser/DIDUrlParser";
+import {Secret, SecretsResolver} from "didcomm";
+import {
+  Apollo,
+  Castor,
+  Curve,
+  PeerDID,
+  Pluto,
+  PublicKeyJWK,
+  Seed,
+  VerificationMethod,
+  VerificationMethods
+} from "domain/index.js";
+import * as DIDURLParser from "castor/parser/DIDUrlParser.js";
 
 export class DIDCommSecretsResolver implements SecretsResolver {
   constructor(
     private readonly apollo: Apollo,
     private readonly castor: Castor,
     private readonly pluto: Pluto
-  ) {}
+  ) {
+  }
 
   async find_secrets(secret_ids: string[]): Promise<string[]> {
     const peerDids = await this.pluto.getAllPeerDIDs();
@@ -46,7 +53,7 @@ export class DIDCommSecretsResolver implements SecretsResolver {
           }
         }
         return all;
-      }, [] as Domain.PublicKeyJWK[]);
+      }, [] as PublicKeyJWK[]);
 
       if (publicKeyJWK) {
         const secret = this.mapToSecret(found, publicKeyJWK);
@@ -59,8 +66,8 @@ export class DIDCommSecretsResolver implements SecretsResolver {
   //TODO: Get rid of this ANY for peerDID pluto should return correct type
   //TODO: DATA DOES NOT NEED TO EXIST THERE IN JWK
   private mapToSecret(
-    peerDid: Domain.PeerDID,
-    publicKeyJWK: Domain.PublicKeyJWK
+    peerDid: PeerDID,
+    publicKeyJWK: PublicKeyJWK
   ): Secret {
     const privateKey = peerDid.privateKeys.find(
       (key) => key.keyCurve.curve === Curve.X25519
@@ -68,7 +75,7 @@ export class DIDCommSecretsResolver implements SecretsResolver {
     if (!privateKey) {
       throw new Error(`Invalid PrivateKey Curve ${Curve.X25519}`);
     }
-    const seed: Domain.Seed = { value: new Uint8Array() };
+    const seed: Seed = {value: new Uint8Array()};
     const keyPair = this.apollo.createKeyPairFromPrivateKey(privateKey, seed);
     const ecnumbasis = this.castor.getEcnumbasis(peerDid.did, keyPair);
     const id = `${peerDid.did.toString()}#${ecnumbasis}`;

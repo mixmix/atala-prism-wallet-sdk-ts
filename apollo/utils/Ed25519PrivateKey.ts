@@ -1,7 +1,7 @@
 import * as elliptic from "elliptic";
 import { base64url } from "multiformats/bases/base64";
 
-import { Ed25519KeyCommon } from "./Ed25519KeyCommon";
+import { Ed25519KeyCommon } from "./Ed25519KeyCommon.js";
 
 export class Ed25519PrivateKey extends Ed25519KeyCommon {
   private keyPair: elliptic.eddsa.KeyPair;

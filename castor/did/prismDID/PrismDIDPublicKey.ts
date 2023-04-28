@@ -1,9 +1,7 @@
-import { Secp256k1PublicKey } from "../../../apollo/utils/Secp256k1PublicKey";
-import Apollo from "../../../domain/buildingBlocks/Apollo";
-import { Curve, PublicKey } from "../../../domain/models";
-import { CastorError } from "../../../domain/models/Errors";
+import { Secp256k1PublicKey } from "apollo/utils/Secp256k1PublicKey.js";
+import { Apollo, Curve, PublicKey, CastorError } from "domain/index.js";
+import * as Protos from "../../protos/node_models.js";
 
-import * as Protos from "../../protos/node_models";
 export enum Usage {
   MASTER_KEY = "masterKey",
   ISSUING_KEY = "issuingKey",

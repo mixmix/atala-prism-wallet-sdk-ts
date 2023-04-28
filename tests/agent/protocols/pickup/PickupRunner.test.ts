@@ -1,17 +1,17 @@
 import { uuid } from "@stablelib/uuid";
-import chai from "chai";
-import chaiAsPromised from "chai-as-promised";
+const chai = require("chai");
+const chaiAsPromised = require("chai-as-promised");
 
 import { expect } from "chai";
 
-import Mercury from "../../../../domain/buildingBlocks/Mercury";
-import { MercuryStub } from "../../mocks/MercuryMock";
+import { MercuryStub } from "../../mocks/MercuryMock.js";
 import {
   AttachmentData,
   AttachmentDescriptor,
   Message,
-} from "../../../../domain";
-import { PickupRunner } from "../../../../prism-agent/protocols/pickup/PickupRunner";
+  Mercury
+} from "domain/index.js";
+import { PickupRunner } from "prism-agent/protocols/pickup/PickupRunner.js";
 
 chai.use(chaiAsPromised);
 

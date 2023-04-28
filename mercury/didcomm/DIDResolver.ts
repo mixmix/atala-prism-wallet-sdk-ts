@@ -1,8 +1,8 @@
 import { DIDResolver, Service, VerificationMethod, DIDDoc } from "didcomm";
 
-import * as Domain from "../../domain";
-import Castor from "../../castor/Castor";
-import { PeerDIDService } from "../../peer-did/PeerDID";
+import * as Domain from "domain/index.js";
+import Castor from "../../castor/Castor.js";
+import { PeerDIDService } from "../../peer-did/PeerDID.js";
 
 export class DIDCommDIDResolver implements DIDResolver {
   constructor(private readonly castor: Castor) {}

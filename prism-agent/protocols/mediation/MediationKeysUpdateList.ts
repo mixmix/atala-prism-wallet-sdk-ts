@@ -1,8 +1,8 @@
 import { uuid } from "@stablelib/uuid";
-import { DID, Message } from "../../../domain";
+import { DID, Message } from "domain/index.js";
 
-import { ProtocolType } from "../ProtocolTypes";
-import { MediationKeysUpdateListBody } from "../types";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
+import { MediationKeysUpdateListBody } from "prism-agent/protocols/types.js";
 
 export class MediationKeysUpdateList {
   public static type = ProtocolType.DidcommMediationKeysUpdate;

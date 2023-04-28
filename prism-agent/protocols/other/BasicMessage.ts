@@ -1,8 +1,8 @@
-import { DID, Message } from "../../../domain";
-import { AgentError } from "../../../domain/models/Errors";
-import { ProtocolHelpers } from "../../helpers/ProtocolHelpers";
-import { ProtocolType } from "../ProtocolTypes";
-import { BasicMessageBody } from "../types";
+import { DID, Message } from "domain/index.js";
+import { AgentError } from "domain/models/Errors.js";
+import { ProtocolHelpers } from "prism-agent/helpers/ProtocolHelpers.js";
+import { BasicMessageBody } from "prism-agent/protocols/types.js";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
 
 export class BasicMessage {
   public static type = ProtocolType.DidcommBasicMessage;

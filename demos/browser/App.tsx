@@ -3,17 +3,17 @@ import React, {useCallback, useEffect} from "react";
 import "./App.css";
 import * as jose from "jose";
 import {useAtom} from "jotai";
-import * as SDK from "../../index";
-import * as Domain from '../../domain';
-import { mnemonicsAtom } from "./state";
-import { trimString } from "./utils";
-import Spacer from "./Spacer";
-import { Box } from "./Box";
-import { BasicMessage } from "../../prism-agent/protocols/other/BasicMessage";
-import { ListenerKey } from "../../prism-agent/types";
-import { OfferCredential } from "../../prism-agent/protocols/issueCredential/OfferCredential";
-import { IssueCredential } from "../../prism-agent/protocols/issueCredential/IssueCredential";
-import { RequestPresentation } from "../../prism-agent/protocols/proofPresentation/RequestPresentation";
+import * as SDK from "index.js";
+import * as Domain from "domain/index.js";
+import { mnemonicsAtom } from "./state.js";
+import { trimString } from "./utils.js";
+import Spacer from "./Spacer.js";
+import { Box } from "./Box.js";
+import { BasicMessage } from "prism-agent/protocols/other/BasicMessage.js";
+import { ListenerKey } from "prism-agent/types/index.js";
+import { OfferCredential } from "prism-agent/protocols/issueCredential/OfferCredential.js";
+import { IssueCredential } from "prism-agent/protocols/issueCredential/IssueCredential.js";
+import { RequestPresentation } from "prism-agent/protocols/proofPresentation/RequestPresentation.js";
 
 const mediatorDID = SDK.Domain.DID.fromString(
   "did:peer:2.Ez6LSms555YhFthn1WV8ciDBpZm86hK9tp83WojJUmxPGk1hZ.Vz6MkmdBjMyB4TS5UbbQw54szm8yvMMf1ftGV2sQVYAxaeWhE.SeyJpZCI6Im5ldy1pZCIsInQiOiJkbSIsInMiOiJodHRwczovL21lZGlhdG9yLnJvb3RzaWQuY2xvdWQiLCJhIjpbImRpZGNvbW0vdjIiXX0"
@@ -314,7 +314,7 @@ const OOB: React.FC<{ agent: SDK.Agent, pluto: SDK.Pluto }> = props => {
   }
   async function handleParseOOB() {
     if (!oob) {
-      return 
+      return
     }
     const parsed = await props.agent.parseOOBInvitation(new URL(oob));
     await props.agent.acceptDIDCommInvitation(parsed)
@@ -339,7 +339,7 @@ const Agent: React.FC<{ agent: SDK.Agent, castor: SDK.Castor, pluto: SDK.Pluto }
   const [messages, setMessages] = React.useState<SDK.Domain.Message[]>([]);
 
   const handleMessages = async (newMessages:SDK.Domain.Message[]) => {
-    
+
     const filteredMessages = newMessages;
     const joinedMessages = [...messages, ...filteredMessages];
 

@@ -1,30 +1,24 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
 import chai from "chai";
+import { expect } from "chai";
 import chaiAsPromised from "chai-as-promised";
-
-import * as sinon from "sinon";
+import sinon from "sinon";
 import SinonChai from "sinon-chai";
 import {
-  Api,
+  MercuryError,
+  Api, Castor,
   DID,
   DIDDocument,
   HttpResponse,
   KeyPair,
   Message,
   PublicKey,
-  Service,
-  ServiceEndpoint,
-  Services,
-} from "../../domain";
-import * as Domain from "../../domain";
-import { MercuryError } from "../../domain/models/Errors";
-import { DIDCommProtocol } from "../../mercury/DIDCommProtocol";
-import Mercury from "../../mercury/Mercury";
-import Castor from "../../domain/buildingBlocks/Castor";
+  Service
+} from "domain/index.js";
+import { DIDCommProtocol } from "mercury/DIDCommProtocol.js";
+import Mercury from "mercury/Mercury.js";
+
 chai.use(SinonChai);
 chai.use(chaiAsPromised);
-const expect = chai.expect;
 
 describe("Mercury", () => {
   let sandbox: sinon.SinonSandbox;
@@ -221,7 +215,7 @@ describe("Mercury", () => {
 
         sandbox
           .stub(ctx.castor, "resolveDID")
-          .resolves(new Domain.DIDDocument(toDID, []));
+          .resolves(new DIDDocument(toDID, []));
 
         expect(ctx.mercury.sendMessage(message)).to.eventually.be.rejectedWith(
           MercuryError.NoValidServiceFoundError

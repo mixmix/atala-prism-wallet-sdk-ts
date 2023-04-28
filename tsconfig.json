@@ -1,32 +1,44 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "strict": true,
-    "noImplicitAny": true,
-    "esModuleInterop": true,
-    "declarationDir": "build/typings",
-    "module": "esnext",
-    "target": "es2020",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "allowJs": true,
+    "preserveConstEnums": true,
+    "module": "ESNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
     "sourceMap": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "declaration": true,
+    "jsx": "react-jsx",
+    "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
-    "lib": [
-      "es2020",
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "moduleResolution": "node",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "jsx": "react-jsx"
+    "esModuleInterop": true,
+    "paths": {
+      "prism-agent/*": ["prism-agent/*"],
+      "pluto/*": ["pluto/*"],
+      "mercury/*": ["mercury/*"],
+      "config/*": ["config/*"],
+      "castor/*": ["castor/*"],
+      "apollo/*": ["apollo/*"],
+      "demos/*": ["demos/*"],
+      "domain/*": ["domain/*"],
+      "pollux/*": ["pollux/*"],
+      "peer-did/*": ["peer-did/*"]
+    },
+    "rootDirs": [
+      "prism-agent",
+      "pluto",
+      "mercury",
+      "config",
+      "castor",
+      "apollo",
+      "demos",
+      "domain",
+      "pollux",
+      "peer-did"
+    ]
   },
   "include": [
     "prism-agent",
@@ -34,13 +46,14 @@
     "mercury",
     "config",
     "castor",
-    "utils",
     "apollo",
-    "castor",
-    "demos"
+    "demos",
+    "domain",
+    "pollux",
+    "peer-did",
+    "tests"
   ],
   "exclude": [
-    "tests",
     "build"
   ]
 }

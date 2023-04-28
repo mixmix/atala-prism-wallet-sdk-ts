@@ -4,8 +4,8 @@ import axios, {
   RawAxiosRequestHeaders,
   AxiosError,
 } from "axios";
-import { Api, HttpResponse } from "../../domain/models/Api";
-import { HttpError } from "./HttpError";
+import { Api, HttpResponse } from "domain/index.js";
+import { HttpError } from "./HttpError.js";
 
 export class ApiImpl implements Api {
   client: AxiosStatic = axios;

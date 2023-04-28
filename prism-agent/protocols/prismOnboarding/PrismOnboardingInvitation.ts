@@ -1,7 +1,7 @@
-import { JsonString } from "../../../domain";
-import { AgentError } from "../../../domain/models/Errors";
-import { ProtocolType } from "../ProtocolTypes";
-import { PrismOnboardingInvitationBody } from "../types";
+import { JsonString } from "../../../domain/index.js";
+import { AgentError } from "../../../domain/models/Errors.js";
+import { ProtocolType } from "../ProtocolTypes.js";
+import { PrismOnboardingInvitationBody } from "../types.js";
 
 export class PrismOnboardingInvitation {
   public body: PrismOnboardingInvitationBody;

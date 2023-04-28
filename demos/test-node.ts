@@ -1,6 +1,6 @@
 import { webcrypto } from "node:crypto";
-import * as SDK from "..";
-import { createTestScenario } from "./createTestScenario";
+import * as SDK from "../index.js";
+import { createTestScenario } from "./createTestScenario.js";
 
 (globalThis as any).crypto = webcrypto;
 

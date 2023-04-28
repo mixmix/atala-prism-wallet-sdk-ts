@@ -3,8 +3,8 @@
  * compiler version: 3.19.4
  * source: node_models.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./common_models";
-import * as dependency_2 from "./google/protobuf/timestamp";
+import * as dependency_1 from "./common_models.js";
+import * as dependency_2 from "./google/protobuf/timestamp.js";
 import * as pb_1 from "google-protobuf";
 export namespace io.iohk.atala.prism.protos {
     export enum KeyUsage {

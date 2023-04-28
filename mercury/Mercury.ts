@@ -1,11 +1,10 @@
-import * as Domain from "../domain";
-import { MercuryError } from "../domain/models/Errors";
-import { default as MercuryInterface } from "../domain/buildingBlocks/Mercury";
-import { DIDCommProtocol } from "./DIDCommProtocol";
-import { Api, DID } from "../domain";
-import { MediaType } from "./helpers/MediaType";
-import Castor from "../domain/buildingBlocks/Castor";
-import { ForwardMessage } from "./forward/ForwardMessage";
+import * as Domain from "domain/index.js";
+import { MercuryError } from "domain/models/Errors.js";
+import { Mercury as MercuryInterface } from "domain/index.js";
+import { DIDCommProtocol } from "./DIDCommProtocol.js";
+import { Api, DID, Castor } from "domain/index.js";
+import { MediaType } from "./helpers/MediaType.js";
+import { ForwardMessage } from "./forward/ForwardMessage.js";
 
 export default class Mercury implements MercuryInterface {
   constructor(

@@ -1,12 +1,12 @@
-// Generated from ./castor/parser/DIDAbnf.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from castor/parser/DIDAbnf.g4 by ANTLR 4.9.0-SNAPSHOT
 
 
-import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
+import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener.js";
 
-import { DidContext } from "./DIDAbnfParser";
-import { Method_nameContext } from "./DIDAbnfParser";
-import { Method_specific_idContext } from "./DIDAbnfParser";
-import { IdcharContext } from "./DIDAbnfParser";
+import { DidContext } from "./DIDAbnfParser.js";
+import { Method_nameContext } from "./DIDAbnfParser.js";
+import { Method_specific_idContext } from "./DIDAbnfParser.js";
+import { IdcharContext } from "./DIDAbnfParser.js";
 
 
 /**

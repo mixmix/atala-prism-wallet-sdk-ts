@@ -1,4 +1,4 @@
-import { JWTVerifiablePayload, VerifiableCredential } from "../../domain";
+import { JWTVerifiablePayload, VerifiableCredential } from "domain/index.js";
 
 export class JWTCredential {
   private jwtVerifiableCredential: JWTVerifiablePayload;

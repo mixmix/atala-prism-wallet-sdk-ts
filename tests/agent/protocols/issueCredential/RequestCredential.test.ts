@@ -1,12 +1,10 @@
 import { expect, assert } from "chai";
-import { Message } from "../../../../domain";
-import { AgentError } from "../../../../domain/models/Errors";
-
+import { Message, AgentError } from "domain/index.js";
 import {
   createRequestCredentialBody,
   RequestCredential,
-} from "../../../../prism-agent/protocols/issueCredential/RequestCredential";
-import { DIDTest } from "../../helpers/DID";
+} from "prism-agent/protocols/issueCredential/RequestCredential.js";
+import { DIDTest } from "../../helpers/DID.js";
 
 describe("RequestCredential", () => {
   it("Should create a valid RequestCredential from a correct RequestMessage", () => {

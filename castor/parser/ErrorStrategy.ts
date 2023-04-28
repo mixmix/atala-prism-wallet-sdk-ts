@@ -1,6 +1,6 @@
 import { Parser, RecognitionException, Token } from "antlr4ts";
-import { DefaultErrorStrategy } from "antlr4ts/DefaultErrorStrategy";
-import { InvalidDIDString } from "../../domain/models/errors/Castor";
+import { DefaultErrorStrategy } from "antlr4ts/DefaultErrorStrategy.js";
+import { InvalidDIDString } from "domain/index.js";
 
 export class ErrorStrategy extends DefaultErrorStrategy {
   recover(recognizer: Parser, e: RecognitionException): void {

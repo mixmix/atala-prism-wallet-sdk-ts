@@ -1,5 +1,5 @@
-import { JsonString } from ".";
-import { DID } from "./DID";
+import { JsonString } from "./index.js";
+import { DID } from "./DID.js";
 
 export enum CredentialType {
   JWT = "jwt",

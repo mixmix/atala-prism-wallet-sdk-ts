@@ -1,12 +1,12 @@
 import { uuid } from "@stablelib/uuid";
-import { AgentError } from "../../../domain/models/Errors";
-import { AttachmentDescriptor, DID, Message } from "../../../domain";
-import { ProtocolType } from "../ProtocolTypes";
-import { CredentialFormat } from "./CredentialFormat";
-import { ProtocolHelpers } from "../../helpers/ProtocolHelpers";
-import { CredentialPreview } from "./CredentialPreview";
-import { ProposeCredential } from "./ProposeCredential";
-import { OfferCredentialBody } from "../types";
+import { AgentError } from "domain/models/Errors.js";
+import { AttachmentDescriptor, DID, Message } from "domain/index.js";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
+import { CredentialFormat } from "prism-agent/protocols/issueCredential/CredentialFormat.js";
+import { ProtocolHelpers } from "prism-agent/helpers/ProtocolHelpers.js";
+import { CredentialPreview } from "prism-agent/protocols/issueCredential/CredentialPreview.js";
+import { ProposeCredential } from "prism-agent/protocols/issueCredential/ProposeCredential.js";
+import { OfferCredentialBody } from "prism-agent/protocols/types.js";
 
 export class OfferCredential {
   public static type = ProtocolType.DidcommOfferCredential;

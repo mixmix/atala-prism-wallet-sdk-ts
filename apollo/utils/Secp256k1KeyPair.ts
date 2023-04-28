@@ -1,9 +1,9 @@
 import BN from "bn.js";
 import * as elliptic from "elliptic";
-import { Secp256k1KeyCommon } from "./Secp256k1KeyCommon";
+import { Secp256k1KeyCommon } from "./Secp256k1KeyCommon.js";
 
-import { Secp256k1PrivateKey } from "./Secp256k1PrivateKey";
-import { Secp256k1PublicKey } from "./Secp256k1PublicKey";
+import { Secp256k1PrivateKey } from "./Secp256k1PrivateKey.js";
+import { Secp256k1PublicKey } from "./Secp256k1PublicKey.js";
 
 export class Secp256k1KeyPair extends Secp256k1KeyCommon {
   constructor(

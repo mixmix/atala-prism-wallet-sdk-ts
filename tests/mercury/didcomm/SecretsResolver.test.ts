@@ -1,12 +1,12 @@
 import chai from "chai";
 import * as sinon from "sinon";
 import SinonChai from "sinon-chai";
-import Apollo from "../../../apollo/Apollo";
-import Castor from "../../../castor/Castor";
-import Pluto from "../../../pluto/Pluto";
-import * as Domain from "../../../domain";
-import { DIDCommSecretsResolver } from "../../../mercury/didcomm/SecretsResolver";
-import { Curve } from "../../../domain";
+import Apollo from "apollo/Apollo.js";
+import Castor from "castor/Castor.js";
+import Pluto from "pluto/Pluto.js";
+import * as Domain from "domain/index.js";
+import { DIDCommSecretsResolver } from "mercury/didcomm/SecretsResolver.js";
+import { Curve } from "domain/index.js";
 
 chai.use(SinonChai);
 const expect = chai.expect;

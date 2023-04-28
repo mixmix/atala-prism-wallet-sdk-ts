@@ -1,9 +1,8 @@
-import { DID, DIDUrl } from "../../domain";
+import { DID, DIDUrl } from "domain/index.js";
 import { CharStreams, CommonTokenStream } from "antlr4ts";
-import { ParseTreeWalker } from "antlr4ts/tree/ParseTreeWalker";
-import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
-import { InvalidDIDString } from "../../domain/models/errors/Castor";
-import { DIDUrlAbnfListener } from "./DIDUrlAbnfListener";
+import { ParseTreeWalker, ParseTreeListener} from "antlr4ts/tree/index.js";
+import { InvalidDIDString } from "domain/models/errors/Castor.js";
+import { DIDUrlAbnfListener } from "castor/parser/DIDUrlAbnfListener.js";
 
 import {
   FragContext,
@@ -13,9 +12,9 @@ import {
   Method_specific_idContext,
   DIDUrlAbnfParser,
   SearchContext,
-} from "./DIDUrlAbnfParser";
-import { ErrorStrategy } from "./ErrorStrategy";
-import { DIDUrlAbnfLexer } from "./DIDUrlAbnfLexer";
+} from "castor/parser/DIDUrlAbnfParser.js";
+import { ErrorStrategy } from "castor/parser/ErrorStrategy.js";
+import { DIDUrlAbnfLexer } from "castor/parser/DIDUrlAbnfLexer.js";
 
 class DIDUrlListener implements DIDUrlAbnfListener {
   public scheme?: string;

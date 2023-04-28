@@ -1,4 +1,4 @@
-import { putUVarInt, uVarInt } from "./VarInt";
+import { putUVarInt, uVarInt } from "./VarInt.js";
 
 export enum Codec {
   x25519 = 0xec,

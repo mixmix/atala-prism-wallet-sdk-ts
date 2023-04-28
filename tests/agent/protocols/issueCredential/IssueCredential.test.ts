@@ -1,13 +1,12 @@
 import { expect, assert } from "chai";
-import { Message } from "../../../../domain";
-import { AgentError } from "../../../../domain/models/Errors";
+import { Message, AgentError } from "domain/index.js";
 import {
   createIssueCredentialBody,
   IssueCredential,
-} from "../../../../prism-agent/protocols/issueCredential/IssueCredential";
-import { RequestCredential } from "../../../../prism-agent/protocols/issueCredential/RequestCredential";
-import { ProtocolType } from "../../../../prism-agent/protocols/ProtocolTypes";
-import { DIDTest } from "../../helpers/DID";
+} from "prism-agent/protocols/issueCredential/IssueCredential.js";
+import { RequestCredential } from "prism-agent/protocols/issueCredential/RequestCredential.js";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
+import { DIDTest } from "../../helpers/DID.js";
 
 describe("IssueCredential", () => {
   it("Should create a valid IssueCredential when valid IssueMessage is provided", () => {

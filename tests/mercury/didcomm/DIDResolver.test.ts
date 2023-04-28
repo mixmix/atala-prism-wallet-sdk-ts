@@ -1,9 +1,9 @@
 
 import { expect } from "chai"
-import Castor from "../../../castor/Castor";
-import * as Domain from "../../../domain";
-import { DIDCommDIDResolver } from "../../../mercury/didcomm/DIDResolver";
-import { PeerDIDService } from "../../../peer-did/PeerDID";
+import Castor from "castor/Castor.js";
+import * as Domain from "domain/index.js";
+import { DIDCommDIDResolver } from "mercury/didcomm/DIDResolver.js";
+import { PeerDIDService } from "peer-did/PeerDID.js";
 
 describe("Mercury DIDComm DIDResolver", () => {
   describe("resolve", () => {

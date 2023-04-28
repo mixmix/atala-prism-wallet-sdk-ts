@@ -1,8 +1,7 @@
-import { AttachmentDescriptor, Message } from "../../../domain";
-import Mercury from "../../../domain/buildingBlocks/Mercury";
-import { AgentError } from "../../../domain/models/Errors";
-import { ProtocolType } from "../ProtocolTypes";
-import { PickupAttachment } from "../types";
+import {AttachmentDescriptor, Message, Mercury, AttachmentBase64, AttachmentJsonData} from "domain/index.js";
+import { AgentError } from "domain/models/Errors.js";
+import { ProtocolType } from "../ProtocolTypes.js";
+import { PickupAttachment } from "../types.js";
 
 type PickupResponse =
   | { type: "status"; message: Message }
@@ -30,12 +29,17 @@ export class PickupRunner {
     attachment: AttachmentDescriptor
   ): PickupAttachment | null {
     if (Message.isBase64Attachment(attachment.data)) {
+      let attachmentBase64 = attachment.data as AttachmentBase64
       return {
         attachmentId: attachment.id,
-        data: attachment.data.base64,
+        data: attachmentBase64.base64,
       };
     } else if (Message.isJsonAttachment(attachment.data)) {
-      return { attachmentId: attachment.id, data: attachment.data.data };
+      let attachmentJson = attachment.data as AttachmentJsonData
+      return {
+        attachmentId: attachment.id,
+        data: attachmentJson.data
+      };
     }
 
     return null;

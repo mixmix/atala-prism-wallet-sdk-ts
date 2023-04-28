@@ -2,9 +2,10 @@
 import { SHA256 } from "@stablelib/sha256";
 import { base64url } from "multiformats/bases/base64";
 
-import Apollo from "../domain/buildingBlocks/Apollo";
-import { default as CastorInterface } from "../domain/buildingBlocks/Castor";
 import {
+  Apollo,
+  Castor as CastorInterface,
+  CastorError,
   DID,
   PublicKey,
   Service,
@@ -14,35 +15,30 @@ import {
   DIDDocumentCoreProperty,
   DIDResolver,
   Curve,
-} from "../domain/models";
+  VerificationMethod as DIDDocumentVerificationMethod,
+  VerificationMethods as DIDDocumentVerificationMethods
+} from "domain/index.js";
 import {
   getUsageId,
   PrismDIDPublicKey,
   Usage,
-} from "./did/prismDID/PrismDIDPublicKey";
-import * as DIDParser from "./parser/DIDParser";
-import * as Protos from "./protos/node_models";
-
-import { PeerDIDResolver } from "./resolver/PeerDIDResolver";
-import { PeerDIDCreate } from "../peer-did/PeerDIDCreate";
-import { LongFormPrismDIDResolver } from "./resolver/LongFormPrismDIDResolver";
-import { CastorError } from "../domain/models/Errors";
-import {
-  VerificationMethod as DIDDocumentVerificationMethod,
-  VerificationMethods as DIDDocumentVerificationMethods,
-} from "../domain";
+} from "./did/prismDID/PrismDIDPublicKey.js";
+import * as DIDParser from "./parser/DIDParser.js";
+import * as Protos from "./protos/node_models.js";
+import { PeerDIDResolver } from "./resolver/PeerDIDResolver.js";
+import { PeerDIDCreate } from "../peer-did/PeerDIDCreate.js";
+import { LongFormPrismDIDResolver } from "./resolver/LongFormPrismDIDResolver.js";
 import * as base64 from "multiformats/bases/base64";
 import * as base58 from "multiformats/bases/base58";
-
-import { JWKHelper } from "../peer-did/helpers/JWKHelper";
+import { JWKHelper } from "../peer-did/helpers/JWKHelper.js";
 import {
   VerificationMaterialAgreement,
   VerificationMaterialAuthentication,
   VerificationMaterialFormatPeerDID,
   VerificationMethodTypeAgreement,
   VerificationMethodTypeAuthentication,
-} from "../peer-did/types";
-import { Secp256k1PublicKey } from "../apollo/utils/Secp256k1PublicKey";
+} from "../peer-did/types.js";
+import { Secp256k1PublicKey } from "../apollo/utils/Secp256k1PublicKey.js";
 export default class Castor implements CastorInterface {
   private apollo: Apollo;
   private resolvers: DIDResolver[];

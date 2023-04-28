@@ -1,7 +1,7 @@
 import { uuid } from "@stablelib/uuid";
 
-import { ProtocolType } from "../ProtocolTypes";
-import { DID, Message } from "../../../domain";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
+import { DID, Message } from "domain/index.js";
 
 export class MediationRequest {
   public static type = ProtocolType.DidcommMediationRequest;

@@ -1,11 +1,11 @@
-import chai from "chai";
 import { expect } from "chai";
-import chaiAsPromised from "chai-as-promised";
-import { Message } from "../../../../../domain";
-import Mercury from "../../../../../domain/buildingBlocks/Mercury";
-import { AgentError } from "../../../../../domain/models/Errors";
-import { DIDCommInvitationRunner } from "../../../../../prism-agent/protocols/invitation/v2/DIDCommInvitationRunner";
-import { MercuryStub } from "../../../mocks/MercuryMock";
+import { Message, Mercury, AgentError } from "domain/index.js";
+
+import { DIDCommInvitationRunner } from "prism-agent/protocols/invitation/v2/DIDCommInvitationRunner.js";
+import { MercuryStub } from "../../../mocks/MercuryMock.js";
+
+const chai = require("chai");
+const chaiAsPromised = require("chai-as-promised");
 
 let mercury: Mercury;
 chai.use(chaiAsPromised);

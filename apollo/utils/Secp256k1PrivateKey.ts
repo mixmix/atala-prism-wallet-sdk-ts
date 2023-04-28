@@ -1,9 +1,9 @@
-import BN from "bn.js";
 
-import { ECConfig } from "../../config/ECConfig";
-import { Secp256k1KeyCommon } from "./Secp256k1KeyCommon";
-import { Secp256k1PublicKey } from "./Secp256k1PublicKey";
-import { ApolloError } from "../../domain/models/Errors";
+import { ECConfig } from "config/ECConfig.js";
+import { Secp256k1KeyCommon } from "./Secp256k1KeyCommon.js";
+import { Secp256k1PublicKey } from "./Secp256k1PublicKey.js";
+import { ApolloError } from "domain/models/Errors.js";
+import * as BN from "bn.js";
 
 abstract class Secp256k1PrivateKeyCommon {
   public abstract getPublicKey(): Secp256k1PublicKey;
@@ -44,7 +44,7 @@ export class Secp256k1PrivateKey
     if (encoded.length !== ECConfig.PRIVATE_KEY_BYTE_SIZE) {
       throw new ApolloError.ECPublicKeyInitialization();
     }
-    return new Secp256k1PrivateKey(new BN(encoded));
+    return new Secp256k1PrivateKey(new BN.BN(encoded));
   }
 
   sign(message: Buffer) {

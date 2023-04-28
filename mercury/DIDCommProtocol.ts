@@ -1,4 +1,4 @@
-import * as Domain from "../domain";
+import * as Domain from "domain/index.js";
 
 export interface DIDCommProtocol {
   packEncrypted(

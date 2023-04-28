@@ -1,4 +1,4 @@
-import { KeyPair } from "../../domain";
+import { KeyPair } from "domain/index.js";
 
 interface PublicJson {
   kty: string;

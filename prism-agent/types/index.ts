@@ -1,22 +1,19 @@
-import { VerifiableCredential } from "../../domain/models/VerifiableCredential";
-import { OutOfBandInvitation } from "../protocols/invitation/v2/OutOfBandInvitation";
+import { VerifiableCredential } from "domain/models/index.js";
+import { OutOfBandInvitation } from "../protocols/invitation/v2/OutOfBandInvitation.js";
 import {
   DID,
   Mediator,
   Message,
   Service as DIDDocumentService,
   Signature,
-} from "../../domain";
-import { DIDPair } from "../../domain/models/DIDPair";
-import Castor from "../../domain/buildingBlocks/Castor";
-import Mercury from "../../domain/buildingBlocks/Mercury";
-import Pluto from "../../domain/buildingBlocks/Pluto";
-import { CancellableTask } from "../helpers/Task";
-import { OfferCredential } from "../protocols/issueCredential/OfferCredential";
-import { RequestCredential } from "../protocols/issueCredential/RequestCredential";
-import { IssueCredential } from "../protocols/issueCredential/IssueCredential";
-import { RequestPresentation } from "../protocols/proofPresentation/RequestPresentation";
-import { Presentation } from "../protocols/proofPresentation/Presentation";
+} from "../../domain/index.js";
+import { Castor, DIDPair, Mercury, Pluto } from "domain/index.js";
+import { CancellableTask } from "../helpers/Task.js";
+import { OfferCredential } from "../protocols/issueCredential/OfferCredential.js";
+import { RequestCredential } from "../protocols/issueCredential/RequestCredential.js";
+import { IssueCredential } from "../protocols/issueCredential/IssueCredential.js";
+import { RequestPresentation } from "../protocols/proofPresentation/RequestPresentation.js";
+import { Presentation } from "../protocols/proofPresentation/Presentation.js";
 interface InvitationInterface {
   type: InvitationTypes;
   from?: DID;

@@ -1,4 +1,4 @@
-import { ProtocolType } from "../ProtocolTypes";
+import { ProtocolType } from "../ProtocolTypes.js";
 
 export interface Attribute {
   name: string;

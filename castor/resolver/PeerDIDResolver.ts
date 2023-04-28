@@ -1,6 +1,5 @@
-import { CastorError } from "../../domain/models/Errors";
-import { MultiCodec, Codec } from "../../peer-did/helpers/Multicodec";
-import { PeerDIDService } from "../../peer-did/PeerDID";
+import { MultiCodec, Codec } from "../../peer-did/helpers/Multicodec.js";
+import { PeerDIDService } from "../../peer-did/PeerDID.js";
 import {
   VerificationMaterialFormatPeerDID,
   VerificationMaterialAuthentication,
@@ -9,10 +8,10 @@ import {
   VerificationMethodTypeAgreement,
   VerificationMethodTypeAuthentication,
   Numalgo2Prefix,
-} from "../../peer-did/types";
+} from "../../peer-did/types.js";
 import { base58btc } from "multiformats/bases/base58";
-
 import {
+  CastorError,
   DID,
   DIDDocument,
   DIDResolver,
@@ -24,8 +23,8 @@ import {
   Authentication as DIDDocumentAuthentication,
   KeyAgreement as DIDDocumentKeyAgreement,
   Services as DIDDocumentServices,
-} from "../../domain/models";
-import { JWKHelper } from "../../peer-did/helpers/JWKHelper";
+} from "domain/index.js";
+import { JWKHelper } from "../../peer-did/helpers/JWKHelper.js";
 import * as base64 from "multiformats/bases/base64";
 
 export class PeerDIDResolver implements DIDResolver {

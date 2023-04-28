@@ -1,4 +1,4 @@
-import { CastorError } from "../../../domain/models/Errors";
+import { CastorError } from "domain/index.js";
 
 export class PrismDIDMethodId {
   private readonly value: string;

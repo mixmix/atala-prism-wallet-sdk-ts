@@ -1,10 +1,12 @@
-import * as SDK from "..";
-import {DID, SeedWords} from "../domain";
-import Apollo from "../domain/buildingBlocks/Apollo";
-import Castor from "../domain/buildingBlocks/Castor";
-import Mercury from "../domain/buildingBlocks/Mercury";
-import Pluto from "../domain/buildingBlocks/Pluto";
-
+import * as SDK from "../index.js";
+import {
+  Apollo,
+  Castor,
+  Mercury,
+  Pluto,
+  DID,
+  SeedWords
+} from "domain/index.js";
 interface TestScenario {
   apollo: Apollo;
   castor: Castor;

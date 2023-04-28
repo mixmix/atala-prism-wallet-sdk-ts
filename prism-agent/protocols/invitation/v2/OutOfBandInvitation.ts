@@ -1,10 +1,9 @@
 import { uuid } from "@stablelib/uuid";
-import { JsonString } from "../../../../domain";
-import { AgentError } from "../../../../domain/models/Errors";
-import { PrismOnboardingInvitation } from "../../../types";
+import { JsonString, AgentError } from "domain/index.js";
+import { PrismOnboardingInvitation } from "prism-agent/types/index.js";
 
-import { ProtocolType } from "../../ProtocolTypes";
-import { OutOfBandInvitationBody } from "../../types";
+import { ProtocolType } from "../../ProtocolTypes.js";
+import { OutOfBandInvitationBody } from "prism-agent/protocols/types.js";
 
 export class OutOfBandInvitation {
   public type = ProtocolType.Didcomminvitation;

@@ -1,8 +1,6 @@
-import DID from "./DID";
-import DIDPair from "./DIDPair";
-import Mediator from "./Mediator";
-import Message from "./Message";
-import PrivateKey from "./PrivateKey";
-import VerifiableCredential from "./VerifiableCredential";
-
-export {DID, DIDPair, Mediator, Message, PrivateKey, VerifiableCredential};
+export * from "./DID.js";
+export * from "./DIDPair.js";
+export * from "./Mediator.js";
+export * from "./Message.js";
+export * from "./PrivateKey.js";
+export * from "./VerifiableCredential.js";

@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { AttachmentDescriptor } from "../../domain";
-import { AgentError } from "../../domain/models/Errors";
-import { ProtocolType } from "../protocols/ProtocolTypes";
-import { CredentialFormat } from "../protocols/issueCredential/CredentialFormat";
+import { AttachmentDescriptor } from "domain/index.js";
+import { AgentError } from "domain/models/Errors.js";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
+import { CredentialFormat } from "prism-agent/protocols/issueCredential/CredentialFormat.js";
 import {
   ProposeCredentialBody,
   OfferCredentialBody,
@@ -13,7 +12,7 @@ import {
   RequestPresentationBody,
   ProposePresentationBody,
   BasicMessageBody,
-} from "../protocols/types";
+} from "prism-agent/protocols/types.js";
 
 export class ProtocolHelpers {
   private static isProposeCredentialBody(

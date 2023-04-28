@@ -1,16 +1,15 @@
 import { expect } from "chai";
 
-import { Curve, KeyPair, Service, DID, ServiceEndpoint } from "../../domain";
-import Apollo from "../../apollo/Apollo";
-
-import Castor from "../../castor/Castor";
+import { Curve, KeyPair, Service, DID, ServiceEndpoint } from "domain/index.js";
+import Apollo from "apollo/Apollo.js";
+import Castor from "castor/Castor.js";
 import {
   VerificationMaterialAuthentication,
   VerificationMaterialFormatPeerDID,
   VerificationMethodTypeAuthentication,
-} from "../../peer-did/types";
-import { MultiCodec } from "../../peer-did/helpers/Multicodec";
-import { PeerDIDResolver } from "../../castor/resolver/PeerDIDResolver";
+} from "../../peer-did/types.js";
+import { MultiCodec } from "../../peer-did/helpers/Multicodec.js";
+import { PeerDIDResolver } from "castor/resolver/PeerDIDResolver.js";
 
 describe("PEERDID CreateTest", () => {
   it("Should test milticodec coding", () => {

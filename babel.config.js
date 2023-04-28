@@ -1,11 +1,11 @@
-module.exports = {
+export default {
     presets: [
         "@babel/preset-typescript",
         [
             "@babel/preset-env",
             {
                 useBuiltIns: "usage",
-                corejs: 3,
+                corejs: 3
             },
         ],
         "@babel/preset-react",

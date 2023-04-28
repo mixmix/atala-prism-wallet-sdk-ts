@@ -1,13 +1,11 @@
-import { DID, Mediator, Message } from "../../domain";
-import Mercury from "../../domain/buildingBlocks/Mercury";
-import { AgentError } from "../../domain/models/Errors";
-import { MediationGrant } from "../protocols/mediation/MediationGrant";
-import { MediationKeysUpdateList } from "../protocols/mediation/MediationKeysUpdateList";
-import { MediationRequest } from "../protocols/mediation/MediationRequest";
-import { PickupReceived } from "../protocols/pickup/PickupReceived";
-import { PickupRequest } from "../protocols/pickup/PickupRequest";
-import { PickupRunner } from "../protocols/pickup/PickupRunner";
-import { MediatorHandler, MediatorStore } from "../types";
+import { Mercury, AgentError, DID, Mediator, Message } from "domain/index.js";
+import { MediationGrant } from "../protocols/mediation/MediationGrant.js";
+import { MediationKeysUpdateList } from "../protocols/mediation/MediationKeysUpdateList.js";
+import { MediationRequest } from "../protocols/mediation/MediationRequest.js";
+import { PickupReceived } from "../protocols/pickup/PickupReceived.js";
+import { PickupRequest } from "../protocols/pickup/PickupRequest.js";
+import { PickupRunner } from "../protocols/pickup/PickupRunner.js";
+import { MediatorHandler, MediatorStore } from "../types/index.js";
 
 export class BasicMediatorHandler implements MediatorHandler {
   public mediator?: Mediator;
@@ -46,41 +44,33 @@ export class BasicMediatorHandler implements MediatorHandler {
   async achieveMediation(host: DID): Promise<Mediator> {
     const mediator = await this.bootRegisteredMediator();
     if (!mediator) {
-      try {
-        const mediationRequest = new MediationRequest(
-          host,
-          this.mediatorDID
-        ).makeMessage();
+      const mediationRequest = new MediationRequest(
+        host,
+        this.mediatorDID
+      ).makeMessage();
 
-        const message: Message | undefined =
-          await this.mercury.sendMessageParseMessage(mediationRequest);
+      const message: Message | undefined =
+        await this.mercury.sendMessageParseMessage(mediationRequest);
 
-        if (!message) {
-          //TODO: Improve this error
-          throw new Error("Trying to achieve mediation returned empty data");
-        }
-
-        const grandMessage = MediationGrant.fromMessage(message);
-        const routingDID = DID.fromString(grandMessage.body.routing_did);
-
-        const mediator: Mediator = {
-          hostDID: host,
-          routingDID: routingDID,
-          mediatorDID: this.mediatorDID,
-        };
-
-        await this.store.storeMediator(mediator);
-
-        this.mediator = mediator;
-
-        return mediator;
-      } catch (err) {
-        if (err instanceof Error) {
-          throw new AgentError.MediationRequestFailedError(err.message);
-        } else {
-          throw err;
-        }
+      if (!message) {
+        //TODO: Improve this error
+        throw new Error("Trying to achieve mediation returned empty data");
       }
+
+      const grandMessage = MediationGrant.fromMessage(message);
+      const routingDID = DID.fromString(grandMessage.body.routing_did);
+
+      const mediator: Mediator = {
+        hostDID: host,
+        routingDID: routingDID,
+        mediatorDID: this.mediatorDID,
+      };
+
+      await this.store.storeMediator(mediator);
+
+      this.mediator = mediator;
+
+      return mediator;
     }
 
     return mediator;

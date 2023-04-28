@@ -1,8 +1,8 @@
 import { fromSeed } from "bip32";
 
-import { DerivationAxis } from "./DerivationAxis";
-import { DerivationPath } from "./DerivationPath";
-import { ExtendedKey } from "./ExtendedKey";
+import { DerivationAxis } from "./DerivationAxis.js";
+import { DerivationPath } from "./DerivationPath.js";
+import { ExtendedKey } from "./ExtendedKey.js";
 
 export class KeyDerivation {
   static deriveKey(seed: Uint8Array, path: DerivationPath) {

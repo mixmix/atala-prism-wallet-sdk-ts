@@ -1,7 +1,7 @@
 import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity({name: "did"})
-export default class Did {
+export class Did {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
   @Column({type: 'text', unique: true, nullable: false, primary: true})

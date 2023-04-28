@@ -1,9 +1,8 @@
-import { default as ApolloInterface } from "../domain/buildingBlocks/Apollo";
-import * as bip39 from "@scure/bip39";
-import { wordlist } from "@scure/bip39/wordlists/english";
-
-import * as elliptic from "elliptic";
 import {
+  Apollo as ApolloInterface,
+  MnemonicWordList,
+  MnemonicLengthException,
+  MnemonicWordException,
   Seed,
   SeedWords,
   KeyCurve,
@@ -13,23 +12,21 @@ import {
   CompressedPublicKey,
   Signature,
   Curve,
-} from "../domain/models";
-import { MnemonicWordList } from "../domain/models/WordList";
-import {
-  MnemonicLengthException,
-  MnemonicWordException,
-} from "../domain/models/errors/Mnemonic";
-import { DerivationPath } from "./utils/derivation/DerivationPath";
-import { KeyDerivation } from "./utils/derivation/KeyDerivation";
-import { Secp256k1PublicKey } from "./utils/Secp256k1PublicKey";
-import { Secp256k1PrivateKey } from "./utils/Secp256k1PrivateKey";
-import { Ed25519PrivateKey } from "./utils/Ed25519PrivateKey";
-import { Ed25519PublicKey } from "./utils/Ed25519PublicKey";
-import { Ed25519KeyPair } from "./utils/Ed25519KeyPair";
-import { X25519KeyPair } from "./utils/X25519KeyPair";
-import { ApolloError } from "../domain/models/Errors";
+} from "domain/index.js";
+import * as bip39 from "@scure/bip39";
+import { wordlist } from "@scure/bip39/wordlists/english.js";
+import * as elliptic from "elliptic";
+import { DerivationPath } from "./utils/derivation/DerivationPath.js";
+import { KeyDerivation } from "./utils/derivation/KeyDerivation.js";
+import { Secp256k1PublicKey } from "./utils/Secp256k1PublicKey.js";
+import { Secp256k1PrivateKey } from "./utils/Secp256k1PrivateKey.js";
+import { Ed25519PrivateKey } from "./utils/Ed25519PrivateKey.js";
+import { Ed25519PublicKey } from "./utils/Ed25519PublicKey.js";
+import { Ed25519KeyPair } from "./utils/Ed25519KeyPair.js";
+import { X25519KeyPair } from "./utils/X25519KeyPair.js";
+import { ApolloError } from "../domain/models/Errors.js";
+import { OctetKeyPair } from "./models/OctetKeyPair.js";
 
-import { OctetKeyPair } from "./models/OctetKeyPair";
 const EC = elliptic.ec;
 
 export default class Apollo implements ApolloInterface {

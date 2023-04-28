@@ -1,5 +1,5 @@
-import { CredentialFormat } from "./issueCredential/CredentialFormat";
-import { CredentialPreview } from "./issueCredential/CredentialPreview";
+import { CredentialFormat } from "prism-agent/protocols/issueCredential/CredentialFormat.js";
+import { CredentialPreview } from "prism-agent/protocols/issueCredential/CredentialPreview.js";
 
 export interface CredentialBody {
   formats: CredentialFormat[];

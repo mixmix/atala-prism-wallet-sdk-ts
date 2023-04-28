@@ -3,7 +3,7 @@
  * compiler version: 3.19.4
  * source: common_models.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./google/protobuf/timestamp";
+import * as dependency_1 from "./google/protobuf/timestamp.js";
 import * as pb_1 from "google-protobuf";
 export namespace io.iohk.atala.prism.protos {
     export enum SortByDirection {

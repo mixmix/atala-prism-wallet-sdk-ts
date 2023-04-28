@@ -1,6 +1,5 @@
-import { DID } from "../../../domain/models";
-import { CastorError } from "../../../domain/models/Errors";
-import { PrismDIDMethodId } from "./PrismDIDMethodId";
+import { DID, CastorError} from "domain/index.js";
+import { PrismDIDMethodId } from "./PrismDIDMethodId.js";
 
 export class LongFormPrismDID {
   private prismMethodId: PrismDIDMethodId;

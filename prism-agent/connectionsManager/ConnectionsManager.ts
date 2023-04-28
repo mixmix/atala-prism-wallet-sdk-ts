@@ -1,17 +1,21 @@
-import { DID, Message, MessageDirection } from "../../domain";
-import Castor from "../../domain/buildingBlocks/Castor";
-import Mercury from "../../domain/buildingBlocks/Mercury";
-import Pluto from "../../domain/buildingBlocks/Pluto";
-import { DIDPair } from "../../domain/models/DIDPair";
-import { AgentError } from "../../domain/models/Errors";
-import { AgentMessageEvents } from "../Agent.MessageEvents";
-import { CancellableTask } from "../helpers/Task";
+import {
+  Castor,
+  Mercury,
+  Pluto,
+  DID,
+  DIDPair,
+  AgentError,
+  Message,
+  MessageDirection
+} from "domain/index.js";
+import { AgentMessageEvents } from "../Agent.MessageEvents.js";
+import { CancellableTask } from "../helpers/Task.js";
 import {
   AgentMessageEvents as AgentMessageEventsClass,
   ConnectionsManager as ConnectionsManagerClass,
   ListenerKey,
   MediatorHandler,
-} from "../types";
+} from "../types/index.js";
 
 export class ConnectionsManager implements ConnectionsManagerClass {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

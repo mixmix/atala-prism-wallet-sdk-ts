@@ -1,10 +1,9 @@
 import { uuid } from "@stablelib/uuid";
 
-import { DID, Message } from "../../../domain";
-import { AgentError } from "../../../domain/models/Errors";
-import { OutOfBandInvitation } from "../invitation/v2/OutOfBandInvitation";
-import { ProtocolType } from "../ProtocolTypes";
-import { HandshakeRequestBody } from "../types";
+import { AgentError, DID, Message } from "domain/index.js";
+import { OutOfBandInvitation } from "../invitation/v2/OutOfBandInvitation.js";
+import { ProtocolType } from "../ProtocolTypes.js";
+import { HandshakeRequestBody } from "../types.js";
 
 export class HandshakeRequest {
   public static type = ProtocolType.DidcommconnectionRequest;

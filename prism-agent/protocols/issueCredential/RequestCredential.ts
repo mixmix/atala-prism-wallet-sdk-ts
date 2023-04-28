@@ -1,11 +1,10 @@
 import { uuid } from "@stablelib/uuid";
 
-import { AttachmentDescriptor, DID, Message } from "../../../domain";
-import { AgentError } from "../../../domain/models/Errors";
-import { ProtocolType } from "../ProtocolTypes";
-import { CredentialFormat } from "./CredentialFormat";
-import { ProtocolHelpers } from "../../helpers/ProtocolHelpers";
-import { CredentialBody } from "../types";
+import { AgentError, AttachmentDescriptor, DID, Message } from "domain/index.js";
+import { ProtocolType } from "../ProtocolTypes.js";
+import { CredentialFormat } from "./CredentialFormat.js";
+import { ProtocolHelpers } from "../../helpers/ProtocolHelpers.js";
+import { CredentialBody } from "../types.js";
 
 export class RequestCredential {
   public static type = ProtocolType.DidcommRequestCredential;

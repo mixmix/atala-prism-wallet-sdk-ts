@@ -1,4 +1,4 @@
-import { KeyCurve } from "./KeyCurve";
+import { KeyCurve } from "./KeyCurve.js";
 
 export interface PublicKey {
   keyCurve: KeyCurve;

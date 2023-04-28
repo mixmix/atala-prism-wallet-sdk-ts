@@ -1,4 +1,4 @@
-import { DID } from ".";
+import { DID } from "./index.js";
 
 export class PrismDIDInfo {
   constructor(

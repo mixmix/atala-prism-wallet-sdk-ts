@@ -1,11 +1,10 @@
 import { expect } from "chai";
-import { Message } from "../../../../domain";
-import { AgentError } from "../../../../domain/models/Errors";
-import { ProtocolHelpers } from "../../../../prism-agent/helpers/ProtocolHelpers";
-import { Presentation } from "../../../../prism-agent/protocols/proofPresentation/Presentation";
-import { ProtocolType } from "../../../../prism-agent/protocols/ProtocolTypes";
-import { PresentationBody } from "../../../../prism-agent/protocols/types";
-import { DIDTest } from "../../helpers/DID";
+import { Message, AgentError } from "domain/index.js";
+import { ProtocolHelpers } from "prism-agent/helpers/ProtocolHelpers.js";
+import { Presentation } from "prism-agent/protocols/proofPresentation/Presentation.js";
+import { ProtocolType } from "prism-agent/protocols/ProtocolTypes.js";
+import { PresentationBody } from "prism-agent/protocols/types.js";
+import { DIDTest } from "../../helpers/DID.js";
 
 describe("ProofPresentation->Presentation Tests", () => {
   it("Should create a Presentation from a valid PresentationMessage", async () => {

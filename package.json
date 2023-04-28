@@ -1,20 +1,35 @@
 {
   "name": "@input-output-hk/atala-prism-wallet-sdk",
-  "version": "2.0.0",
+  "version": "2.0.19-test",
   "description": "PRISM typescript SDK",
-  "main": "build/node/index.js",
-  "browser": "build/browser/index.js",
-  "types": "build/typings/index.d.ts",
+  "main": "./build/cjs/index.js",
+  "browser": "./build/browser/index.js",
+  "module": "./build/esm/index.js",
+  "type": "module",
+  "files": [
+    "build"
+  ],
+  "exports": {
+    "require": {
+      "default": "./build/cjs/index.js",
+      "types": "./build/cjs/index.d.ts"
+    },
+    "import": {
+      "default": "./build/esm/index.js",
+      "types": "./build/esm/index.d.ts"
+    }
+  },
   "scripts": {
-    "build": "npm run clean-up && npm run build:browser && npm run build:node && npm run types",
-    "types": "rm -rf build/typings && tsc",
-    "clean-up": "./scripts/typeorm-cleanup.sh",
-    "build:browser": "webpack --mode=production --config webpack/webpack.browser.conf.js",
-    "build:node": "webpack --mode=production --config webpack/webpack.node.conf.js",
-    "dev:browser": "webpack serve --mode=development --config webpack/webpack.browser.conf.js",
+    "build": "npm run clean-up && rm -rf build && npm run build:browser && npm run build:node",
+    "clean-up": "node ./scripts/typeorm-cleanup.cjs",
+    "build:browser": "webpack --mode=production --config webpack/webpack.browser.conf.cjs",
+    "build:node": "tsc -b tsconfig.esm.json tsconfig.cjs.json",
+    "dev:browser": "webpack serve --mode=development --config webpack/webpack.browser.conf.cjs",
     "dev:node": "rm -rf build && npm run types && webpack  --watch --mode=development --config webpack/webpack.node.conf.js",
     "test": "jest",
     "coverage": "npm run test -- --coverage",
+    "parser": "antlr4ts castor/parser/DIDAbnf.g4 && antlr4ts castor/parser/DIDUrlAbnf.g4 && npm run parser:convert",
+    "parser:convert": "ts-node-esm ./scripts/antlr4esm.ts ./castor/parser",
     "lint": "npx eslint ."
   },
   "publishConfig": {
@@ -54,7 +69,7 @@
     "@types/elliptic": "^6.4.14",
     "@types/estree": "^1.0.0",
     "@types/google-protobuf": "^3.15.6",
-    "@types/jest": "^29.4.0",
+    "@types/jest": "^29.5.1",
     "@types/node": "^18.14.2",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -64,6 +79,7 @@
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.55.0",
+    "antlr4ts-cli": "^0.5.0-alpha.4",
     "assert": "^2.0.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^9.1.2",
@@ -86,6 +102,7 @@
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
+    "failsafe": "^1.0.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "inversify": "^6.0.1",
@@ -107,6 +124,10 @@
     "stream-browserify": "^3.0.0",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.7",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^3.12.6",
     "typescript": "^4.9.5",
     "url": "^0.11.0",
     "url-loader": "^4.1.1",
@@ -116,12 +137,6 @@
     "webpack-dev-server": "4.11.1",
     "webpack-node-externals": "^3.0.0"
   },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "ts"
-    ]
-  },
   "dependencies": {
     "@scure/bip39": "^1.1.1",
     "@stablelib/base64": "^1.0.1",
@@ -129,11 +144,11 @@
     "@stablelib/uuid": "^1.0.2",
     "@stablelib/wipe": "^1.0.1",
     "@stablelib/x25519": "^1.0.3",
+    "antlr4": "^4.12.0",
     "antlr4ts": "^0.5.0-alpha.4",
     "axios": "^1.3.4",
     "bip32": "^2.0.6",
     "bn.js": "^5.2.1",
-    "crypto": "^1.0.1",
     "core-js": "^3.29.1",
     "did-jwt": "^6.11.5",
     "did-resolver": "^4.1.0",
