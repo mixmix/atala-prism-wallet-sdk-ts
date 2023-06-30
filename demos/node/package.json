@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@input-output-hk/atala-prism-wallet-sdk": "file:../..",
+    "@stablelib/sha256": "^1.0.1",
     "ipfs": "^0.66.0",
     "orbit-db": "^0.29.0",
     "orbit-db-access-controllers": "^0.4.0"

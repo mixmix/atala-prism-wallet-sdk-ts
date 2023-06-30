@@ -1,4 +1,7 @@
 import * as SDK from '@input-output-hk/atala-prism-wallet-sdk';
+
+import {SdJwt } from 'jwt-sd';
+
 const mnemonicWords = ["banana","frame","pottery","comic","stuff","shuffle","erase","crash","hire","settle","make","wrap","stool","verify","champion","decade","sudden","leopard","label","art","play","half","smart","exchange"];
 
  function createTestScenario(mediatorDID) {
@@ -27,6 +30,8 @@ const mnemonicWords = ["banana","frame","pottery","comic","stuff","shuffle","era
       manager,
       seed.seed
     );
+
+    
     return {
       apollo,
       seed,
@@ -60,6 +65,11 @@ const mnemonicWords = ["banana","frame","pottery","comic","stuff","shuffle","era
      
 
         try {
+
+          const sdJwt = new SdJwt({
+            
+          })
+
             const secondaryDID = await agent.createNewPeerDID([], true);
             const message =  new SDK.BasicMessage(
                 { content: "Test Message" },

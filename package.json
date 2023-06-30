@@ -164,6 +164,7 @@
     "hash.js": "1.1.7",
     "jose": "^4.12.2",
     "jsonwebtoken": "^9.0.0",
+    "jwt-sd": "^0.0.1-alpha.5",
     "localforage": "^1.10.0",
     "multiformats": "^9.9.0",
     "sql.js": "^1.8.0",
