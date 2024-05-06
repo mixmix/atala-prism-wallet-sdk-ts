@@ -105,6 +105,7 @@ export class HandshakeRequest {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const toDID = DID.fromString(inviteMessage.from!);
 
+    // NOTE: 2. a) i) request is made
     return new HandshakeRequest(
       inviteMessage.body,
       from,

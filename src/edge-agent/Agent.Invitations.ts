@@ -86,6 +86,7 @@ export class AgentInvitations implements AgentInvitationsClass {
    * @param {OutOfBandInvitation} invitation
    * @returns {*}
    */
+  // NOTE: 1. acceptDIDCommInvitation takes an invite and establishes a connection
   async acceptDIDCommInvitation(invitation: OutOfBandInvitation, optionalAlias?: string) {
     if (!this.connection.mediationHandler.mediator) {
       throw new AgentError.NoMediatorAvailableError();
@@ -96,6 +97,7 @@ export class AgentInvitations implements AgentInvitationsClass {
       true
     );
 
+    // NOTE: 2. the invitation is set up
     const pair = await new DIDCommConnectionRunner(
       invitation,
       this.pluto,
@@ -104,6 +106,9 @@ export class AgentInvitations implements AgentInvitationsClass {
       optionalAlias
     ).run();
 
+    // QUESTION: what is a "connection" or "pair" here?
+    // QUESTION: what is needed for such a pair to exist?
+    // NOTE: 3. the pair from processing the invite is ... stored?
     await this.connection.addConnection(pair);
   }
 

@@ -15,11 +15,15 @@ export class DIDCommConnectionRunner {
   ) { }
 
   async run(): Promise<DIDPair> {
+    // NOTE: 2. a) the invitation is transformed into a message
     const request = HandshakeRequest.fromOutOfBand(
       this.invitationMessage,
       this.ownDID
     );
+    // NOTE: 2. b) the request is sent as a message
     await this.connection.sendMessage(request.makeMessage());
+    // NOTE: 2. c) a "pair" ownDID-remoteDID is created, and incorporated the request.id
+    // QUESTION: how unique is this "pair", is it acually a triplet!
     return new DIDPair(this.ownDID, request.to, this.alias);
   }
 }
