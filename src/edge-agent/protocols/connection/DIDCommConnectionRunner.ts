@@ -15,7 +15,7 @@ export class DIDCommConnectionRunner {
   ) { }
 
   async run(): Promise<DIDPair> {
-    // NOTE: 2. a) the invitation is transformed into a message
+    // NOTE: 2. a) the invitation is transformed into a request
     const request = HandshakeRequest.fromOutOfBand(
       this.invitationMessage,
       this.ownDID

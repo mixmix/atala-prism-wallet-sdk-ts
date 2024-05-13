@@ -97,7 +97,7 @@ export class AgentInvitations implements AgentInvitationsClass {
       true
     );
 
-    // NOTE: 2. the invitation is set up
+    // NOTE: 2. the invitation used
     const pair = await new DIDCommConnectionRunner(
       invitation,
       this.pluto,
@@ -106,10 +106,9 @@ export class AgentInvitations implements AgentInvitationsClass {
       optionalAlias
     ).run();
 
-    // QUESTION: what is a "connection" or "pair" here?
-    // QUESTION: what is needed for such a pair to exist?
-    // NOTE: 3. the pair from processing the invite is ... stored?
+    // NOTE: 3. the id of the connection formed is stored?
     await this.connection.addConnection(pair);
+    // QUESTION: what does the connection manager (this.connection) do with this?
   }
 
   /**
