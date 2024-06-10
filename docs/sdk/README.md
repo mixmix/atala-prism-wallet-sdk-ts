@@ -1,24 +1,28 @@
-@input-output-hk/atala-prism-wallet-sdk / [Exports](modules.md)
+@atala/prism-wallet-sdk / [Exports](modules.md)
 
-# Atala PRISM TypeScript SDK
+# Identus TypeScript SDK
 
-Atala PRISM is a self-sovereign identity (SSI) platform and service suite for
+[![Coverage Status](https://coveralls.io/repos/github/input-output-hk/atala-prism-wallet-sdk-ts/badge.svg?branch=master)](https://coveralls.io/github/input-output-hk/atala-prism-wallet-sdk-ts?branch=master)
+
+---
+
+Identus is a self-sovereign identity (SSI) platform and service suite for
 verifiable data and digital identity. Built on Cardano, it offers core
 infrastructure for issuing DIDs (Decentralized identifiers) and verifiable
 credentials, alongside tools and frameworks to help expand your ecosystem.
 The complete platform is separated into multiple repositories:
 
-- [atala-prism-wallet-sdk-swift](https://github.com/input-output-hk/atala-prism-wallet-sdk-swift) - Repo that implements Atala PRISM for Apple platforms in Swift.
-- [atala-prism-wallet-sdk-kmm](https://github.com/input-output-hk/atala-prism-wallet-sdk-kmm) - Repo that implements Atala PRISM for Apple platforms in KMM, JVM.
-- [atala-prism-wallet-sdk-ts](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts) - Repo that implements Atala PRISM for Browser and NodeJS platforms in TypeScript.
-- [atala-prism-building-blocks](https://github.com/hyperledger-labs/open-enterprise-agent) - Repo that contains the servers Building Blocks.
-- [atala-prism-mediator](https://github.com/input-output-hk/atala-prism-mediator) - Repo for DIDComm V2 Mediator
+- [edge-agent-sdk-swift](https://github.com/input-output-hk/atala-prism-wallet-sdk-swift) - Repo that implements Atala PRISM for Apple platforms in Swift.
+- [edge-agent-sdk-kmm](https://github.com/input-output-hk/atala-prism-wallet-sdk-kmm) - Repo that implements Atala PRISM for Apple platforms in KMM, JVM.
+- [edge-agent-sdk-ts](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts) - Repo that implements Atala PRISM for Browser and NodeJS platforms in TypeScript.
+- [edge-agent-building-blocks](https://github.com/hyperledger-labs/open-enterprise-agent) - Repo that contains the servers Building Blocks.
+- [edge-agent-mediator](https://github.com/input-output-hk/atala-prism-mediator) - Repo for DIDComm V2 Mediator
 
 ## SDK Overview
 
 - Apollo: Provides a suite of necessary cryptographic operations.
 - Castor: Provides a suite of operations to create, manage and resolve decentralized identifiers.
-- Pollux: Provides a suite of operations for handling [verifiable credentials](https://github.com/input-output-hk/atala-prism-docs/blob/main/documentation/docs/concepts/glossary.md#verifiable-credentials).
+- Pollux: Provides a suite of operations for handling [verifiable credentials](https://github.com/input-output-hk/atala-prism-docs/blob/master/documentation/docs/concepts/glossary.md#verifiable-credentials).
 - Mercury: Provides a suite of operations for handling DIDComm V2 messages.
 - Pluto: Provides an interface for storage operations in a portable, storage-agnostic manner.
 - PrismAgent: PrismAgent, a component using all other building blocks, provides basic edge agent capabilities, including implementing DIDComm V2 protocols.
@@ -39,10 +43,6 @@ or with yarn
 ```bash
 yarn add @atala/prism-wallet-sdk
 ```
-
-> **Note for Webpack:**
-> 
-> The application builds code with wasm files for DIDComm and Anoncreds for both browsers and nodejs. When webpack builds public website the wasm files need to be copied manually into the public folder. See examples
 
 ### Running a demo project
 
@@ -66,41 +66,36 @@ npm i
 npm run build
 ```
 
-### For NodeJS CJS
+### Running the sample applications
+We have enabled sample implementations for browsers (React or Next.js) and Node.js.
+To run each demo, ensure the whole SDK builds from the source, then cd into the demo.
 
-After building `prism-wallet-sdk`, cd into `{path}/demos/node-cjs` or use visual studio debugger "CJS DEMO":
-
+Nodejs CommonJS
 ```bash
 cd demos/node-cjs
 npm i
 npm run start
 ```
 
-> **Note:**
-> 
-> The installation in the `{path}/demos/node-cjs` directory requires the `build` folder from the wallet-sdk to be available.
-
-### For NodeJS ESM
-
-After building `prism-wallet-sdk`, cd into `{path}/demos/node-esm` or use visual studio debugger "ESM DEMO":
-
+Nodejs Module
 ```bash
 cd demos/node-esm
 npm i
 npm run start
 ```
 
-> **Note:**
-> 
-> The installation in the `{path}/demos/node-esm` directory requires the `build` folder from the wallet-sdk to be available.
-
-### For browser
-
-After building `prism-wallet-sdk`, cd into the demo directory `{path}/demos/browser`
-
+Browser React
 ```bash
 cd demos/browser
 npm i
+npm run start
+```
+
+Browser NextJS
+```bash
+cd demos/next
+npm i
+npm run build # becuase Error: ENOENT: no such file or directory, open '/.../atala-prism-wallet-sdk-ts/demos/next/.next/BUILD_ID']
 npm run start
 ```
 

@@ -1,4 +1,4 @@
-[@input-output-hk/atala-prism-wallet-sdk](../README.md) / [Exports](../modules.md) / AgentMessageEvents
+[@atala/prism-wallet-sdk](../README.md) / [Exports](../modules.md) / AgentMessageEvents
 
 # Interface: AgentMessageEvents
 
@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:94](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L94)
+[src/edge-agent/types/index.ts:123](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L123)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | [`ListenerKey`](../enums/ListenerKey.md) |
+| `eventName` | `string` |
 | `data` | `any` |
 
 #### Returns
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:96](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L96)
+[src/edge-agent/types/index.ts:125](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L125)
 
 ___
 
@@ -71,4 +71,4 @@ ___
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:95](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L95)
+[src/edge-agent/types/index.ts:124](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L124)

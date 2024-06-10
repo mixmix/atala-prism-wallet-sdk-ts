@@ -1,4 +1,4 @@
-[@input-output-hk/atala-prism-wallet-sdk](../README.md) / [Exports](../modules.md) / MediatorHandler
+[@atala/prism-wallet-sdk](../README.md) / [Exports](../modules.md) / MediatorHandler
 
 # Class: MediatorHandler
 
@@ -21,6 +21,7 @@
 
 - [achieveMediation](MediatorHandler.md#achievemediation)
 - [bootRegisteredMediator](MediatorHandler.md#bootregisteredmediator)
+- [listenUnreadMessages](MediatorHandler.md#listenunreadmessages)
 - [pickupUnreadMessages](MediatorHandler.md#pickupunreadmessages)
 - [registerMessagesAsRead](MediatorHandler.md#registermessagesasread)
 - [updateKeyListWithDIDs](MediatorHandler.md#updatekeylistwithdids)
@@ -43,7 +44,7 @@
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:137](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L137)
+[src/edge-agent/types/index.ts:172](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L172)
 
 ___
 
@@ -53,7 +54,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:135](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L135)
+[src/edge-agent/types/index.ts:170](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L170)
 
 ## Methods
 
@@ -73,7 +74,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:141](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L141)
+[src/edge-agent/types/index.ts:176](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L176)
 
 ___
 
@@ -87,13 +88,35 @@ ___
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:139](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L139)
+[src/edge-agent/types/index.ts:174](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L174)
+
+___
+
+### listenUnreadMessages
+
+▸ **listenUnreadMessages**(`signal`, `serviceEndpointUri`, `onMessage`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `signal` | `AbortSignal` |
+| `serviceEndpointUri` | `string` |
+| `onMessage` | (`messages`: \{ `attachmentId`: `string` ; `message`: [`Message`](Domain.Message-1.md)  }[]) => `void` \| `Promise`\<`void`\> |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/edge-agent/types/index.ts:186](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L186)
 
 ___
 
 ### pickupUnreadMessages
 
-▸ **pickupUnreadMessages**(`limit`): `Promise`\<\{ `attachmentId`: `string` ; `message`: [`Message`](Domain.Message.md)  }[]\>
+▸ **pickupUnreadMessages**(`limit`): `Promise`\<\{ `attachmentId`: `string` ; `message`: [`Message`](Domain.Message-1.md)  }[]\>
 
 #### Parameters
 
@@ -103,11 +126,11 @@ ___
 
 #### Returns
 
-`Promise`\<\{ `attachmentId`: `string` ; `message`: [`Message`](Domain.Message.md)  }[]\>
+`Promise`\<\{ `attachmentId`: `string` ; `message`: [`Message`](Domain.Message-1.md)  }[]\>
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:145](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L145)
+[src/edge-agent/types/index.ts:180](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L180)
 
 ___
 
@@ -127,7 +150,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:149](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L149)
+[src/edge-agent/types/index.ts:184](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L184)
 
 ___
 
@@ -147,4 +170,4 @@ ___
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:143](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L143)
+[src/edge-agent/types/index.ts:178](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L178)

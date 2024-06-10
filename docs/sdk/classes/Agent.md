@@ -1,4 +1,4 @@
-[@input-output-hk/atala-prism-wallet-sdk](../README.md) / [Exports](../modules.md) / Agent
+[@atala/prism-wallet-sdk](../README.md) / [Exports](../modules.md) / Agent
 
 # Class: Agent
 
@@ -46,6 +46,8 @@ Edge agent implementation
 - [createNewPeerDID](Agent.md#createnewpeerdid)
 - [createNewPrismDID](Agent.md#createnewprismdid)
 - [createPresentationForRequestProof](Agent.md#createpresentationforrequestproof)
+- [handlePresentation](Agent.md#handlepresentation)
+- [initiatePresentationRequest](Agent.md#initiatepresentationrequest)
 - [parseInvitation](Agent.md#parseinvitation)
 - [parseOOBInvitation](Agent.md#parseoobinvitation)
 - [parsePrismInvitation](Agent.md#parseprisminvitation)
@@ -66,7 +68,7 @@ Edge agent implementation
 
 ### constructor
 
-• **new Agent**(`apollo`, `castor`, `pluto`, `mercury`, `mediationHandler`, `connectionManager`, `seed?`, `api?`): [`Agent`](Agent.md)
+• **new Agent**(`apollo`, `castor`, `pluto`, `mercury`, `mediationHandler`, `connectionManager`, `seed?`, `api?`, `options?`): [`Agent`](Agent.md)
 
 Creates an instance of Agent.
 
@@ -76,12 +78,13 @@ Creates an instance of Agent.
 | :------ | :------ |
 | `apollo` | [`Apollo`](../interfaces/Domain.Apollo.md) |
 | `castor` | [`Castor`](../interfaces/Domain.Castor.md) |
-| `pluto` | [`Pluto`](../interfaces/Domain.Pluto.md) |
+| `pluto` | [`Pluto`](../interfaces/Domain.Pluto-1.md) |
 | `mercury` | [`Mercury`](../interfaces/Domain.Mercury.md) |
 | `mediationHandler` | [`MediatorHandler`](MediatorHandler.md) |
 | `connectionManager` | [`ConnectionsManager`](ConnectionsManager.md) |
 | `seed?` | [`Seed`](../interfaces/Domain.Seed.md) |
 | `api?` | [`Api`](../interfaces/Domain.Api.md) |
+| `options?` | `AgentOptions` |
 
 #### Returns
 
@@ -89,7 +92,7 @@ Creates an instance of Agent.
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:81](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L81)
+[src/edge-agent/Agent.ts:83](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L83)
 
 ## Properties
 
@@ -99,7 +102,7 @@ Creates an instance of Agent.
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:62](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L62)
+[src/edge-agent/Agent.ts:63](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L63)
 
 ___
 
@@ -109,7 +112,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:63](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L63)
+[src/edge-agent/Agent.ts:64](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L64)
 
 ___
 
@@ -119,7 +122,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:64](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L64)
+[src/edge-agent/Agent.ts:65](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L65)
 
 ___
 
@@ -129,7 +132,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:89](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L89)
+[src/edge-agent/Agent.ts:91](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L91)
 
 ___
 
@@ -139,7 +142,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:82](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L82)
+[src/edge-agent/Agent.ts:84](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L84)
 
 ___
 
@@ -149,7 +152,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:83](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L83)
+[src/edge-agent/Agent.ts:85](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L85)
 
 ___
 
@@ -159,7 +162,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:87](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L87)
+[src/edge-agent/Agent.ts:89](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L89)
 
 ___
 
@@ -169,7 +172,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:86](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L86)
+[src/edge-agent/Agent.ts:88](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L88)
 
 ___
 
@@ -179,17 +182,17 @@ ___
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:85](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L85)
+[src/edge-agent/Agent.ts:87](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L87)
 
 ___
 
 ### pluto
 
-• `Readonly` **pluto**: [`Pluto`](../interfaces/Domain.Pluto.md)
+• `Readonly` **pluto**: [`Pluto`](../interfaces/Domain.Pluto-1.md)
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:84](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L84)
+[src/edge-agent/Agent.ts:86](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L86)
 
 ___
 
@@ -199,7 +202,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:66](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L66)
+[src/edge-agent/Agent.ts:67](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L67)
 
 ___
 
@@ -209,7 +212,7 @@ ___
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:88](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L88)
+[src/edge-agent/Agent.ts:90](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L90)
 
 ___
 
@@ -221,7 +224,7 @@ Agent state
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:60](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L60)
+[src/edge-agent/Agent.ts:61](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L61)
 
 ## Accessors
 
@@ -237,7 +240,7 @@ Get current mediator DID if available or null
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:181](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L181)
+[src/edge-agent/Agent.ts:213](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L213)
 
 ## Methods
 
@@ -270,7 +273,7 @@ Asyncronously accept a didcomm v2 invitation, will create a pair between the Age
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:377](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L377)
+[src/edge-agent/Agent.ts:421](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L421)
 
 ___
 
@@ -298,7 +301,7 @@ Handle an invitation to create a connection
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:330](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L330)
+[src/edge-agent/Agent.ts:374](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L374)
 
 ___
 
@@ -321,7 +324,7 @@ Add an event listener to get notified from an Event "MESSAGE"
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:424](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L424)
+[src/edge-agent/Agent.ts:468](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L468)
 
 ___
 
@@ -350,7 +353,7 @@ Asyncronously Create a new PeerDID
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:302](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L302)
+[src/edge-agent/Agent.ts:346](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L346)
 
 ___
 
@@ -380,13 +383,13 @@ Asyncronously create a new PrismDID
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:282](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L282)
+[src/edge-agent/Agent.ts:326](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L326)
 
 ___
 
 ### createPresentationForRequestProof
 
-▸ **createPresentationForRequestProof**(`request`, `credential`): `Promise`\<`Presentation`\>
+▸ **createPresentationForRequestProof**(`request`, `credential`): `Promise`\<[`Presentation`](Presentation.md)\>
 
 Asyncronously create a verifiablePresentation from a valid stored verifiableCredential
 This is used when the verified requests a specific verifiable credential, this will create the actual
@@ -401,7 +404,7 @@ instance of the presentation which we can share with the verifier.
 
 #### Returns
 
-`Promise`\<`Presentation`\>
+`Promise`\<[`Presentation`](Presentation.md)\>
 
 **`Async`**
 
@@ -411,7 +414,79 @@ instance of the presentation which we can share with the verifier.
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:475](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L475)
+[src/edge-agent/Agent.ts:519](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L519)
+
+___
+
+### handlePresentation
+
+▸ **handlePresentation**(`presentation`): `Promise`\<`boolean`\>
+
+Initiate the Presentation and presentationSubmission
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `presentation` | [`Presentation`](Presentation.md) |
+
+#### Returns
+
+`Promise`\<`boolean`\>
+
+#### Implementation of
+
+[AgentCredentials](../interfaces/AgentCredentials.md).[handlePresentation](../interfaces/AgentCredentials.md#handlepresentation)
+
+#### Defined in
+
+[src/edge-agent/Agent.ts:572](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L572)
+
+___
+
+### initiatePresentationRequest
+
+▸ **initiatePresentationRequest**(`type`, `toDID`, `presentationClaims`): `Promise`\<[`RequestPresentation`](RequestPresentation.md)\>
+
+Initiate a PresentationRequest from the SDK, to create oob Verification Requests
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `type` | [`CredentialType`](../enums/Domain.CredentialType.md) |
+| `toDID` | [`DID`](Domain.DID.md) |
+| `presentationClaims` | [`PresentationClaims`](../interfaces/Domain.PresentationClaims.md) |
+
+#### Returns
+
+`Promise`\<[`RequestPresentation`](RequestPresentation.md)\>
+
+1. Example use-case: Send a Presentation Request for a JWT credential issued by a specific issuer
+```ts
+ agent.initiatePresentationRequest(
+   Domain.CredentialType.JWT,
+   toDID,
+   { issuer: Domain.DID.fromString("did:peer:12345"), claims: {}}
+);
+```
+
+2. Example use-case: Send a Presentation Request for a JWT credential issued by a specific issuer and specific claims
+```ts
+ agent.initiatePresentationRequest(
+   Domain.CredentialType.JWT,
+   toDID,
+   { issuer: Domain.DID.fromString("did:peer:12345"), claims: {email: {type: 'string', pattern:'email@email.com'}}}
+);
+```
+
+#### Implementation of
+
+[AgentCredentials](../interfaces/AgentCredentials.md).[initiatePresentationRequest](../interfaces/AgentCredentials.md#initiatepresentationrequest)
+
+#### Defined in
+
+[src/edge-agent/Agent.ts:555](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L555)
 
 ___
 
@@ -439,7 +514,7 @@ Asyncronously parse an invitation from a valid json string
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:319](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L319)
+[src/edge-agent/Agent.ts:363](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L363)
 
 ___
 
@@ -467,7 +542,7 @@ Asyncronously parse an out of band invitation from a URI as the oob come in form
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:364](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L364)
+[src/edge-agent/Agent.ts:408](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L408)
 
 ___
 
@@ -495,7 +570,7 @@ Asyncronously parse a prismOnboarding invitation from a string
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:353](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L353)
+[src/edge-agent/Agent.ts:397](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L397)
 
 ___
 
@@ -523,7 +598,7 @@ Asyncronously prepare a request credential message from a valid offerCredential 
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:446](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L446)
+[src/edge-agent/Agent.ts:490](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L490)
 
 ___
 
@@ -551,7 +626,7 @@ Extract the verifiableCredential object from the Issue credential message asyncr
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:459](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L459)
+[src/edge-agent/Agent.ts:503](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L503)
 
 ___
 
@@ -578,13 +653,13 @@ Remove event listener, used by stop procedure
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:435](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L435)
+[src/edge-agent/Agent.ts:479](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L479)
 
 ___
 
 ### sendMessage
 
-▸ **sendMessage**(`message`): `Promise`\<`undefined` \| [`Message`](Domain.Message.md)\>
+▸ **sendMessage**(`message`): `Promise`\<`undefined` \| [`Message`](Domain.Message-1.md)\>
 
 Asyncronously send a didcomm Message
 
@@ -592,15 +667,15 @@ Asyncronously send a didcomm Message
 
 | Name | Type |
 | :------ | :------ |
-| `message` | [`Message`](Domain.Message.md) |
+| `message` | [`Message`](Domain.Message-1.md) |
 
 #### Returns
 
-`Promise`\<`undefined` \| [`Message`](Domain.Message.md)\>
+`Promise`\<`undefined` \| [`Message`](Domain.Message-1.md)\>
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:405](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L405)
+[src/edge-agent/Agent.ts:449](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L449)
 
 ___
 
@@ -629,7 +704,7 @@ Asyncronously sign a message with a DID
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:342](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L342)
+[src/edge-agent/Agent.ts:386](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L386)
 
 ___
 
@@ -647,13 +722,13 @@ Asyncronously start the agent
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:225](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L225)
+[src/edge-agent/Agent.ts:259](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L259)
 
 ___
 
 ### startFetchingMessages
 
-▸ **startFetchingMessages**(`iterationPeriod`): `void`
+▸ **startFetchingMessages**(`iterationPeriod`): `Promise`\<`void`\>
 
 Start fetching for new messages in such way that it can be stopped at any point in time without causing memory leaks
 
@@ -665,11 +740,11 @@ Start fetching for new messages in such way that it can be stopped at any point 
 
 #### Returns
 
-`void`
+`Promise`\<`void`\>
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:388](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L388)
+[src/edge-agent/Agent.ts:432](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L432)
 
 ___
 
@@ -687,7 +762,7 @@ Asyncronously stop the agent and any side task that is running
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:263](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L263)
+[src/edge-agent/Agent.ts:307](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L307)
 
 ___
 
@@ -703,7 +778,7 @@ Stops fetching messages
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:395](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L395)
+[src/edge-agent/Agent.ts:439](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L439)
 
 ___
 
@@ -723,7 +798,7 @@ Asyncronously get all verifiable credentials
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:414](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L414)
+[src/edge-agent/Agent.ts:458](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L458)
 
 ___
 
@@ -744,7 +819,8 @@ allowing default instantiation, omitting all but the absolute necessary paramete
 | `params.castor?` | [`Castor`](../interfaces/Domain.Castor.md) |  |
 | `params.mediatorDID` | `string` \| [`DID`](Domain.DID.md) | did of the mediator to be used |
 | `params.mercury?` | [`Mercury`](../interfaces/Domain.Mercury.md) |  |
-| `params.pluto` | [`Pluto`](../interfaces/Domain.Pluto.md) | storage implementation |
+| `params.options?` | `AgentOptions` | - |
+| `params.pluto` | [`Pluto`](../interfaces/Domain.Pluto-1.md) | storage implementation |
 | `params.seed?` | [`Seed`](../interfaces/Domain.Seed.md) |  |
 
 #### Returns
@@ -753,13 +829,13 @@ allowing default instantiation, omitting all but the absolute necessary paramete
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:136](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L136)
+[src/edge-agent/Agent.ts:148](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L148)
 
 ___
 
 ### instanceFromConnectionManager
 
-▸ **instanceFromConnectionManager**(`apollo`, `castor`, `pluto`, `mercury`, `connectionManager`, `seed?`, `api?`): [`Agent`](Agent.md)
+▸ **instanceFromConnectionManager**(`apollo`, `castor`, `pluto`, `mercury`, `connectionManager`, `seed?`, `api?`, `options?`): [`Agent`](Agent.md)
 
 Mainly for testing purposes but instantiating the Agent from a ConnectionManager directly
 
@@ -769,11 +845,12 @@ Mainly for testing purposes but instantiating the Agent from a ConnectionManager
 | :------ | :------ |
 | `apollo` | [`Apollo`](../interfaces/Domain.Apollo.md) |
 | `castor` | [`Castor`](../interfaces/Domain.Castor.md) |
-| `pluto` | [`Pluto`](../interfaces/Domain.Pluto.md) |
+| `pluto` | [`Pluto`](../interfaces/Domain.Pluto-1.md) |
 | `mercury` | [`Mercury`](../interfaces/Domain.Mercury.md) |
 | `connectionManager` | [`ConnectionsManager`](ConnectionsManager.md) |
 | `seed?` | [`Seed`](../interfaces/Domain.Seed.md) |
 | `api?` | [`Api`](../interfaces/Domain.Api.md) |
+| `options?` | `AgentOptions` |
 
 #### Returns
 
@@ -783,4 +860,4 @@ Mainly for testing purposes but instantiating the Agent from a ConnectionManager
 
 #### Defined in
 
-[src/prism-agent/Agent.ts:198](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/Agent.ts#L198)
+[src/edge-agent/Agent.ts:230](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/Agent.ts#L230)

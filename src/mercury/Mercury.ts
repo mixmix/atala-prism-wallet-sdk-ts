@@ -30,7 +30,7 @@ export default class Mercury implements MercuryInterface {
     public castor: Castor,
     public protocol: DIDCommProtocol,
     public api: Api
-  ) {}
+  ) { }
 
   /**
    * Asynchronously packs a given message object into a string representation. This function may throw an error if the
@@ -129,14 +129,30 @@ export default class Mercury implements MercuryInterface {
    */
   async sendMessageParseMessage(
     message: Domain.Message
-  ): Promise<Domain.Message> {
+  ): Promise<Domain.Message | undefined> {
     const responseBody = await this.sendMessage<any>(message);
-    const responseJSON = JSON.stringify(responseBody);
-    return this.unpackMessage(responseJSON);
+    try {
+      const responseJSON = JSON.stringify(responseBody);
+      return await this.unpackMessage(responseJSON);
+    } catch (err) {
+      return undefined
+    }
   }
 
   private notDid(did: Domain.DID | undefined): did is undefined {
-    return !(did instanceof Domain.DID);
+    if (!did) {
+      return true;
+    }
+    if (!did?.method || !did.methodId || !did.schema || !did.toString) {
+      return true;
+    }
+    if (typeof did.method !== "string" || typeof did.methodId !== "string" || typeof did.schema !== "string") {
+      return true;
+    }
+    if (typeof did.toString !== "function") {
+      return true;
+    }
+    return false
   }
 
   private prepareForwardMessage(

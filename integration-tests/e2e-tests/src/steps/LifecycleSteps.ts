@@ -1,9 +1,9 @@
-import {Before, BeforeAll} from "@cucumber/cucumber"
-import {Actor, actorCalled, Cast, engage, TakeNotes} from "@serenity-js/core"
-import {CallAnApi} from "@serenity-js/rest"
-import {Utils} from "../Utils"
-import {WalletSdk} from "../abilities/WalletSdk"
-import {axiosInstance, CloudAgentConfiguration} from "../configuration/CloudAgentConfiguration"
+import { Before, BeforeAll } from "@cucumber/cucumber"
+import { Actor, actorCalled, Cast, engage, TakeNotes } from "@serenity-js/core"
+import { CallAnApi } from "@serenity-js/rest"
+import { Utils } from "../Utils"
+import { WalletSdk } from "../abilities/WalletSdk"
+import { axiosInstance, CloudAgentConfiguration } from "../configuration/CloudAgentConfiguration"
 
 BeforeAll(async () => {
   Utils.prepareNotes()
@@ -20,7 +20,7 @@ class Actors implements Cast {
   static async createAndEngageActors() {
     const actors = new Actors()
 
-    const prismAgent = actorCalled("Cloud Agent").whoCan(
+    const cloudAgent = actorCalled("Cloud Agent").whoCan(
       CallAnApi.using(axiosInstance),
       TakeNotes.usingAnEmptyNotepad()
     )
@@ -30,7 +30,7 @@ class Actors implements Cast {
       await WalletSdk.withANewInstance()
     )
 
-    actors.add(prismAgent)
+    actors.add(cloudAgent)
     actors.add(edgeAgent)
 
     engage(actors)

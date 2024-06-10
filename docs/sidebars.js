@@ -7,27 +7,43 @@ const sidebars = {
         {
             label: 'Introduction',
             type: "doc",
-            id: "README"
+            id: "sdk/README"
+        },
+        {
+            type: 'category',
+            label: 'Examples',
+            link: {
+                type: 'doc',
+                id: 'examples/index',
+            },
+            items: [
+                {
+                    type: 'doc',
+                    label: "SDK Verification",
+                    id: 'examples/SDKVerification',
+                }
+
+            ]
         },
         {
             type: 'category',
             label: 'Modules',
             link: {
                 type: 'doc',
-                id: 'modules',
+                id: 'sdk/modules',
             },
             items: [
-                'classes/Apollo',
-                'classes/Castor',
-                'classes/Agent',
-                'classes/Mercury',
-                'classes/Pollux',
+                'sdk/classes/Apollo',
+                'sdk/classes/Castor',
+                'sdk/classes/Agent',
+                'sdk/classes/Mercury',
+                'sdk/classes/Pollux',
                 {
                     type: 'category',
                     label: 'Domain',
                     link: {
                         type: 'doc',
-                        id: 'modules/Domain',
+                        id: 'sdk/modules/Domain',
                     },
                     items: fs.readdirSync(path.resolve(__dirname, "./sdk"))
                         .reduce((menu, file) => {
@@ -42,10 +58,9 @@ const sidebars = {
                                     ...menu,
                                     ...files.map((filename) => {
 
-                                        const fixFile = `${currentFolder}/${filename.replace(".md", "")}`
-                                        console.log(fixFile)
+                                        const fixFile = `sdk/${currentFolder}/${filename.replace(".md", "")}`
                                         return {
-                                            label: fixFile.replace(`${currentFolder}/Domain.`, ""),
+                                            label: fixFile.replace(`sdk/${currentFolder}/Domain.`, ""),
                                             type: "doc",
                                             id: fixFile
                                         }
@@ -76,9 +91,9 @@ const sidebars = {
                                 return [
                                     ...menu,
                                     ...files.map((filename) => {
-                                        const fixFile = `${currentFolder}/${filename.replace(".md", "")}`
+                                        const fixFile = `sdk/${currentFolder}/${filename.replace(".md", "")}`
                                         return {
-                                            label: fixFile.replace(`${currentFolder}/`, ""),
+                                            label: fixFile.replace(`sdk/${currentFolder}/`, ""),
                                             type: "doc",
                                             id: fixFile
                                         }
@@ -90,7 +105,18 @@ const sidebars = {
                         }, [])
                 }
             ]
-        }
+        },
+        {
+            type: 'category',
+            label: 'Decision records',
+            items: [
+                {
+                    type: 'doc',
+                    id: 'decisions/sdk-package-release',
+                }
+
+            ]
+        },
     ]
 }
 

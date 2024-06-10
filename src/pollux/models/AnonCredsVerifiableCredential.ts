@@ -1,17 +1,19 @@
-import { Anoncreds } from "../../domain/models/Anoncreds";
+import type * as Anoncreds from "anoncreds-browser";
+import * as sha256 from '@stablelib/sha256';
 import { Credential, StorableCredential } from "../../domain/models/Credential";
 import { CredentialType } from "../../domain/models/VerifiableCredential";
 
 export enum AnonCredsCredentialProperties {
   iss = "iss",
   jti = "jti",
-  schemaId = "schemaId",
   sub = "sub",
-  credentialDefinitionId = "credentialDefinitionId",
-  values = "values",
-  signature = "signature",
-  signatureCorrectnessProof = "signatureCorrectnessProof",
   exp = "exp",
+  schemaId = "schema_id",
+  credentialDefinitionId = "cred_def_id",
+  signature = "signature",
+  signatureCorrectnessProof = "signature_correctness_proof",
+  values = "values",
+  revoked = "revoked"
 }
 
 export const AnonCredsRecoveryId = "anonCreds+credential";
@@ -23,7 +25,7 @@ export class AnonCredsCredential
   public recoveryId = AnonCredsRecoveryId;
   public properties = new Map<AnonCredsCredentialProperties, any>();
 
-  constructor(credential: Anoncreds.Credential) {
+  constructor(credential: Anoncreds.CredentialType, isRevoked = false) {
     super();
 
     const {
@@ -34,27 +36,34 @@ export class AnonCredsCredential
       signature_correctness_proof,
     } = credential;
 
+    this.properties.set(AnonCredsCredentialProperties.revoked, isRevoked);
     this.properties.set(AnonCredsCredentialProperties.schemaId, schema_id);
-    this.properties.set(
-      AnonCredsCredentialProperties.credentialDefinitionId,
-      cred_def_id
-    );
+    this.properties.set(AnonCredsCredentialProperties.credentialDefinitionId, cred_def_id);
     this.properties.set(AnonCredsCredentialProperties.values, values);
-
     this.properties.set(AnonCredsCredentialProperties.signature, signature);
-    this.properties.set(
-      AnonCredsCredentialProperties.signatureCorrectnessProof,
-      signature_correctness_proof
-    );
+    this.properties.set(AnonCredsCredentialProperties.signatureCorrectnessProof, signature_correctness_proof);
   }
 
   get id() {
-    return this.getProperty(AnonCredsCredentialProperties.jti);
+    const credential: Anoncreds.CredentialType = {
+      schema_id: this.properties.get(AnonCredsCredentialProperties.schemaId),
+      cred_def_id: this.properties.get(AnonCredsCredentialProperties.credentialDefinitionId),
+      values: this.properties.get(AnonCredsCredentialProperties.values),
+      signature: this.properties.get(AnonCredsCredentialProperties.signature),
+      signature_correctness_proof: this.properties.get(AnonCredsCredentialProperties.signatureCorrectnessProof),
+    }
+    const anoncredsObject = JSON.stringify(
+      credential
+    )
+    const hash = sha256.hash(Buffer.from(anoncredsObject));
+    return Buffer.from(hash).toString('hex')
   }
 
   get claims() {
-    //TODO: SOLVE THIS DURING THE PRESENTATION PHASE
-    return [];
+    const values: Record<string, any> = this.getProperty(AnonCredsCredentialProperties.values);
+    const claims = Object.keys(values).map(key => ({ [key]: values[key] }));
+
+    return claims;
   }
 
   get credentialDefinitionId(): string {
@@ -73,21 +82,25 @@ export class AnonCredsCredential
     return this.properties.get(AnonCredsCredentialProperties.sub);
   }
 
+  get revoked() {
+    return this.properties.get(AnonCredsCredentialProperties.revoked);
+  }
+
   toStorable() {
     const credentialData = JSON.stringify(Object.fromEntries(this.properties));
-    const { id, recoveryId, issuer, subject, claims } = this;
+
     return {
-      id,
-      recoveryId,
+      recoveryId: this.recoveryId,
       credentialData: credentialData,
-      issuer,
-      subject,
+      id: this.id,
+      issuer: this.issuer,
+      subject: this.subject,
       validUntil: this.getProperty(AnonCredsCredentialProperties.exp),
-      availableClaims: claims,
+      // availableClaims: claims,
     };
   }
 
-  toJSON(): Anoncreds.Credential {
+  toJSON(): Anoncreds.CredentialType {
     return {
       cred_def_id: this.credentialDefinitionId,
       schema_id: this.schemaId,

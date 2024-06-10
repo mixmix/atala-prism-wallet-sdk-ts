@@ -3,24 +3,25 @@ import {
   CreateManagedDidRequestDocumentTemplate,
   CredentialDefinitionInput,
   CredentialSchemaInput,
-  ManagedDIDKeyTemplate
+  ManagedDIDKeyTemplate,
+  Purpose
 } from "@hyperledger-labs/open-enterprise-agent-ts-client"
-import {Utils} from "../Utils"
-import {randomUUID} from "crypto"
+import { Utils } from "../Utils"
+import { randomUUID } from "crypto"
 import * as fs from "fs"
-import assert from "assert"
 import axios from "axios"
-import {configDotenv} from "dotenv"
+import { configDotenv } from "dotenv"
+import assert from "assert"
 
 configDotenv()
 
 export class CloudAgentConfiguration {
   public static mediatorOobUrl: string = process.env.MEDIATOR_OOB_URL!
-  public static agentUrl: string = process.env.PRISM_AGENT_URL!
+  public static agentUrl: string = process.env.AGENT_URL!
   public static publishedDid: string = process.env.PUBLISHED_DID!
   public static jwtSchemaGuid: string = process.env.JWT_SCHEMA_GUID!
   public static anoncredDefinitionGuid: string = process.env.ANONCRED_DEFINITION_GUID!
-  public static apiKey: string | undefined  = process.env.APIKEY
+  public static apiKey: string | undefined = process.env.APIKEY
 
   private static isInitialized: boolean = false
 
@@ -50,10 +51,11 @@ export class CloudAgentConfiguration {
   }
 
   /**
-   * Checks if the environment PUBLISHED_DID variable exists in prism-agent, otherwise it creates a new one.
+   * Checks if the environment PUBLISHED_DID variable exists in Cloud Agent, otherwise it creates a new one.
    */
   static async preparePublishedDid() {
     try {
+      assert(this.publishedDid != null)
       assert(this.publishedDid != "")
       await axiosInstance.get(
         `did-registrar/dids/${this.publishedDid}`
@@ -69,7 +71,7 @@ export class CloudAgentConfiguration {
 
     const publicKey = new ManagedDIDKeyTemplate()
     publicKey.id = "key-1"
-    publicKey.purpose = "assertionMethod"
+    publicKey.purpose = Purpose.AssertionMethod
 
     creationData.documentTemplate.publicKeys = [publicKey]
     creationData.documentTemplate.services = []
@@ -108,10 +110,12 @@ export class CloudAgentConfiguration {
   }
 
   /**
-   * Checks if the environment JWT_SCHEMA_GUID variable exists in prism-agent, otherwise it creates a new one.
+   * Checks if the environment JWT_SCHEMA_GUID variable exists in Cloud Agent, otherwise it creates a new one.
    */
   static async prepareJwtSchema() {
     try {
+      assert(this.jwtSchemaGuid != null)
+      assert(this.jwtSchemaGuid != "")
       await axiosInstance.get(
         `schema-registry/schemas/${this.jwtSchemaGuid}`
       )
@@ -155,10 +159,12 @@ export class CloudAgentConfiguration {
   }
 
   /**
-   * Checks if the environment ANONCRED_DEFINITION_GUID variable exists in prism-agent, otherwise it creates a new one.
+   * Checks if the environment ANONCRED_DEFINITION_GUID variable exists in Cloud Agent, otherwise it creates a new one.
    */
   static async prepareAnoncredDefinition() {
     try {
+      assert(this.anoncredDefinitionGuid != null)
+      assert(this.anoncredDefinitionGuid != "")
       await axiosInstance.get(
         `credential-definition-registry/definitions/${this.anoncredDefinitionGuid}`
       )
@@ -170,8 +176,8 @@ export class CloudAgentConfiguration {
     const schema = {
       name: "Automation Anoncred",
       version: "1.0",
-      issuerId : this.publishedDid,
-      attrNames: ["name", "age"]
+      issuerId: this.publishedDid,
+      attrNames: ["name", "age", "gender"]
     }
 
     const credentialSchemaInput: CredentialSchemaInput = {
@@ -196,14 +202,14 @@ export class CloudAgentConfiguration {
       version: "1.0.0",
       tag: "automation-test",
       author: this.publishedDid,
-      schemaId: `${this.agentUrl}schema-registry/schemas/${newSchemaGuid}`,
+      schemaId: `${this.agentUrl}schema-registry/schemas/${newSchemaGuid}/schema`,
       signatureType: "CL",
       supportRevocation: false,
       description: "Test Automation Auto-Generated TS"
     }
 
     const credentialDefinition = await axiosInstance.post(
-      "/credential-definition-registry/definitions",
+      "credential-definition-registry/definitions",
       definitionInput
     )
 

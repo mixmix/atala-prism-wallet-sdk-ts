@@ -1,4 +1,4 @@
-[@input-output-hk/atala-prism-wallet-sdk](../README.md) / [Exports](../modules.md) / ParsedCredentialFormat
+[@atala/prism-wallet-sdk](../README.md) / [Exports](../modules.md) / ParsedCredentialFormat
 
 # Interface: ParsedCredentialFormat\<T\>
 
@@ -22,4 +22,4 @@
 
 #### Defined in
 
-[src/prism-agent/protocols/types.ts:29](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/protocols/types.ts#L29)
+[src/edge-agent/protocols/types.ts:35](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/protocols/types.ts#L35)

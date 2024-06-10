@@ -1,4 +1,4 @@
-[@input-output-hk/atala-prism-wallet-sdk](../README.md) / [Exports](../modules.md) / ListenerKey
+[@atala/prism-wallet-sdk](../README.md) / [Exports](../modules.md) / ListenerKey
 
 # Enumeration: ListenerKey
 
@@ -8,6 +8,7 @@
 
 - [CONNECTION](ListenerKey.md#connection)
 - [MESSAGE](ListenerKey.md#message)
+- [REVOKE](ListenerKey.md#revoke)
 
 ## Enumeration Members
 
@@ -17,7 +18,7 @@
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:90](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L90)
+[src/edge-agent/types/index.ts:118](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L118)
 
 ___
 
@@ -27,4 +28,14 @@ ___
 
 #### Defined in
 
-[src/prism-agent/types/index.ts:89](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/3f28060/src/prism-agent/types/index.ts#L89)
+[src/edge-agent/types/index.ts:117](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L117)
+
+___
+
+### REVOKE
+
+• **REVOKE** = ``"revoke"``
+
+#### Defined in
+
+[src/edge-agent/types/index.ts:119](https://github.com/input-output-hk/atala-prism-wallet-sdk-ts/blob/47ec1c8/src/edge-agent/types/index.ts#L119)

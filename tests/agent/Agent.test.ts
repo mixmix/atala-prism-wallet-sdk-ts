@@ -5,8 +5,7 @@ import chai from "chai";
 import chaiAsPromised from "chai-as-promised";
 import * as sinon from "sinon";
 import SinonChai from "sinon-chai";
-import Agent from "../../src/prism-agent/Agent";
-import { PlutoInMemory as Pluto } from "./PlutoInMemory";
+import Agent from "../../src/edge-agent/Agent";
 import Mercury from "../../src/mercury/Mercury";
 import * as UUIDLib from "@stablelib/uuid";
 import Apollo from "../../src/apollo/Apollo";
@@ -17,30 +16,42 @@ import * as Fixtures from "../fixtures";
 import {
   Api,
   Credential,
+  CredentialMetadata,
   CredentialType,
   DID,
   HttpResponse,
+  JWTCredentialPayload,
+  LinkSecret,
   Message,
   Service,
   ServiceEndpoint,
   StorableCredential,
 } from "../../src/domain/models";
 import { DIDCommProtocol } from "../../src/mercury/DIDCommProtocol";
-import { Castor } from "../../src/domain/buildingBlocks/Castor";
+import { Castor as CastorType } from "../../src/domain/buildingBlocks/Castor";
 import { AgentError } from "../../src/domain/models/Errors";
-import { HandshakeRequest } from "../../src/prism-agent/protocols/connection/HandshakeRequest";
-import { OfferCredential } from "../../src/prism-agent/protocols/issueCredential/OfferCredential";
-import { ProtocolType } from "../../src/prism-agent/protocols/ProtocolTypes";
-import { CredentialPreview } from "../../src/prism-agent/protocols/issueCredential/CredentialPreview";
-import { RequestCredential } from "../../src/prism-agent/protocols/issueCredential/RequestCredential";
-import { IssueCredential } from "../../src/prism-agent/protocols/issueCredential/IssueCredential";
+import { HandshakeRequest } from "../../src/edge-agent/protocols/connection/HandshakeRequest";
+import { OfferCredential } from "../../src/edge-agent/protocols/issueCredential/OfferCredential";
+import { ProtocolType } from "../../src/edge-agent/protocols/ProtocolTypes";
+import { CredentialPreview } from "../../src/edge-agent/protocols/issueCredential/CredentialPreview";
+import { RequestCredential } from "../../src/edge-agent/protocols/issueCredential/RequestCredential";
+import { IssueCredential } from "../../src/edge-agent/protocols/issueCredential/IssueCredential";
 import { base64url } from "multiformats/bases/base64";
 import Pollux from "../../src/pollux/Pollux";
 import { AnoncredsLoader } from "../../src/pollux/AnoncredsLoader";
-import { RequestPresentation } from "../../src/prism-agent/protocols/proofPresentation/RequestPresentation";
-import { Presentation } from "../../src/prism-agent/protocols/proofPresentation/Presentation";
+import { RequestPresentation } from "../../src/edge-agent/protocols/proofPresentation/RequestPresentation";
+import { Presentation } from "../../src/edge-agent/protocols/proofPresentation/Presentation";
 import { JWTCredential } from "../../src/pollux/models/JWTVerifiableCredential";
 import { AnonCredsCredential } from "../../src/pollux/models/AnonCredsVerifiableCredential";
+import InMemoryStore from "../fixtures/inmemory";
+import { Pluto as IPluto } from "../../src/domain";
+import { Pluto } from "../../src/pluto/Pluto";
+import { RevocationNotification } from "../../src/edge-agent/protocols/revocation/RevocationNotfiication";
+import { AgentCredentials } from "../../src/edge-agent/Agent.Credentials";
+import { BasicMediatorHandler, Castor, Store } from "../../src";
+import { randomUUID } from "crypto";
+import { AgentDIDHigherFunctions } from "../../src/edge-agent/Agent.DIDHigherFunctions";
+import { JWT } from "../../src/pollux/utils/JWT";
 
 
 chai.use(SinonChai);
@@ -48,14 +59,11 @@ chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 let agent: Agent;
-let pluto: Pluto;
+let pluto: IPluto;
 let pollux: Pollux;
-let castor: Castor;
+let castor: CastorType;
 let sandbox: sinon.SinonSandbox;
-
-// jest.mock("../apollo/utils/jwt/JWT", () => () => ({
-//   sign: jest.fn(() => "")
-// }));
+let store: Pluto.Store;
 
 
 describe("Agent Tests", () => {
@@ -68,7 +76,13 @@ describe("Agent Tests", () => {
 
   beforeEach(async () => {
     jest.useFakeTimers();
-
+    jest.mock('isows', () => ({
+      WebSocket: jest.fn(() => ({
+        addEventListener: jest.fn(),
+        send: jest.fn(),
+        close: jest.fn(),
+      })),
+    }));
     sandbox = sinon.createSandbox();
     const apollo: Apollo = new Apollo();
     castor = CastorMock;
@@ -79,20 +93,66 @@ describe("Agent Tests", () => {
       packEncrypted: async () => "",
       unpack: async () => new Message("{}", undefined, "TypeofMessage"),
     };
-    pluto = new Pluto();
+    store = new Store({
+      name: 'test' + randomUUID(),
+      storage: InMemoryStore,
+      password: Buffer.from("demoapp").toString("hex")
+    })
+    pluto = new Pluto(store, apollo);
     const mercury = new Mercury(castor, didProtocol, httpManager);
-    const connectionsManager = new ConnectionsManagerMock();
+
+    const polluxInstance = new Pollux(castor)
+    const handler = new BasicMediatorHandler(DID.fromString("did:peer:123456"), mercury, pluto);
+    const seed = apollo.createRandomSeed().seed
+    const didHigherFunctions = new AgentDIDHigherFunctions(
+      apollo,
+      castor,
+      pluto,
+      handler,
+      seed
+    )
+
+    const agentCredentials = new AgentCredentials(
+      apollo,
+      castor,
+      pluto,
+      polluxInstance,
+      apollo.createRandomSeed().seed,
+      mercury,
+      didHigherFunctions
+    )
+
+    const connectionsManager = ConnectionsManagerMock.buildMock({
+      castor,
+      mercury,
+      pluto,
+      agentCredentials,
+      options: {
+        experiments: {
+          liveMode: false
+        }
+      }
+    })
+
+
     agent = Agent.instanceFromConnectionManager(
       apollo,
       castor,
-      pluto as any,
+      pluto,
       mercury,
-      connectionsManager
+      connectionsManager,
+      undefined, undefined,
+      {
+        experiments: {
+          liveMode: false
+        }
+      }
     );
+
+    await polluxInstance.start();
 
     pollux = (agent as any).pollux as Pollux;
 
-    await pollux.start();
   });
 
   describe("Integration Tests", () => {
@@ -140,6 +200,8 @@ describe("Agent Tests", () => {
         agent.parseOOBInvitation(new URL(oob))
       ).to.eventually.be.rejectedWith(AgentError.UnknownInvitationTypeError);
     });
+
+
 
     it("As a developer with a valid invitationMessage I will be sending a Handshake request with the correct information and store the didPair in pluto right after.", async () => {
       const agentInvitations = (agent as any).agentInvitations;
@@ -220,6 +282,8 @@ describe("Agent Tests", () => {
       await agent.start();
     });
 
+
+
     describe("prepareRequestCredentialWithIssuer", () => {
       const credentialPreview: CredentialPreview = {
         type: ProtocolType.DidcommCredentialPreview,
@@ -278,7 +342,7 @@ describe("Agent Tests", () => {
 
           sandbox
             .stub(pluto, "getLinkSecret")
-            .returns(Promise.resolve(linkSecret));
+            .resolves(linkSecret);
 
           sandbox
             .stub(pollux as any, "fetchCredentialDefinition")
@@ -375,8 +439,40 @@ describe("Agent Tests", () => {
           { formats: [{ attach_id: "attach_id", format: CredentialType.JWT }] },
           [{ id: "attach_1", format: "prism/jwt", data: { base64: base64Data } }],
           new DID("did", "prism", "from"),
-          new DID("did", "prism", "to")
+          new DID("did", "prism", "to"),
+          "test-revocation-thid"
         );
+
+        it("Should revoke a JWT Credential", async () => {
+          const revocationIssueMessage = new IssueCredential(
+            { formats: [{ attach_id: "attach_id", format: CredentialType.JWT }] },
+            [{ id: "attach_1", format: "prism/jwt", data: { base64: base64Data } }],
+            new DID("did", "prism", "from"),
+            new DID("did", "prism", "to"),
+            "12345"
+          );
+          const thid = revocationIssueMessage.thid!;
+
+          const revocationMessage = new RevocationNotification(
+            {
+              issueCredentialProtocolThreadId: thid
+            },
+            new DID("did", "prism", "from"),
+            new DID("did", "prism", "to")
+          )
+
+          await agent.pluto.storeMessage(revocationIssueMessage.makeMessage())
+
+          await agent.connectionManager.processMessages([{
+            attachmentId: "123",
+            message: revocationMessage.makeMessage()
+          }])
+
+          const [revokedCredential] = await agent.pluto.getAllCredentials()
+
+          expect(revokedCredential).to.not.equal(undefined)
+          expect(revokedCredential!.isRevoked()).to.equal(true)
+        });
 
         it("Pollux.parseCredential is called with correct decoded data and CredentialType", async () => {
           sandbox.stub(pluto, "storeCredential").resolves();
@@ -441,20 +537,20 @@ describe("Agent Tests", () => {
           "thid"
         );
 
-        it("Pluto.fetchCredentialMetadata returns nullish - throws", async () => {
+        it("Pluto.getCredentialMetadata returns nullish - throws", async () => {
           sandbox.stub(pluto, "storeCredential").resolves();
           sandbox.stub(pluto, "getLinkSecret").resolves();
           sandbox
             .stub(pollux, "parseCredential")
             .resolves(parseCredentialResult as any);
-          sandbox.stub(pluto, "fetchCredentialMetadata").resolves(undefined);
+          sandbox.stub(pluto, "getCredentialMetadata").resolves(undefined);
 
           const result = agent.processIssuedCredentialMessage(issueCredential);
 
           expect(result).to.eventually.be.rejected;
         });
 
-        it("Pluto.fetchCredentialMetadata gets called with issueCredential.thid", async () => {
+        it("Pluto.getCredentialMetadata gets called with issueCredential.thid", async () => {
           sandbox.stub(pluto, "storeCredential").resolves();
           sandbox.stub(pluto, "getLinkSecret").resolves();
           sandbox
@@ -462,8 +558,8 @@ describe("Agent Tests", () => {
             .resolves(parseCredentialResult as any);
 
           const stubFetchCredentialMetadata = sandbox
-            .stub(pluto, "fetchCredentialMetadata")
-            .resolves({ mock: "CredentialMetadata" } as any);
+            .stub(pluto, "getCredentialMetadata")
+            .resolves(new CredentialMetadata(CredentialType.AnonCreds, "mock", { mock: "CredentialMetadata" }) as any);
 
           await agent.processIssuedCredentialMessage(issueCredential);
 
@@ -471,12 +567,12 @@ describe("Agent Tests", () => {
         });
 
         it("Pollux.parseCredential is called with correct decoded data and CredentialType, LinkSecret, CredentialMetadata", async () => {
-          const getLinkSecretResult = "linkSecret123";
-          const fetchCredentialMetadataResult = { mock: "CredentialMetadata" };
+          const getLinkSecretResult = new LinkSecret("linkSecret123");
+          const fetchCredentialMetadataResult = new CredentialMetadata(CredentialType.AnonCreds, "mock", { mock: "CredentialMetadata" });
           sandbox.stub(pluto, "storeCredential").resolves();
           sandbox.stub(pluto, "getLinkSecret").resolves(getLinkSecretResult);
           sandbox
-            .stub(pluto, "fetchCredentialMetadata")
+            .stub(pluto, "getCredentialMetadata")
             .resolves(fetchCredentialMetadataResult as any);
 
           const stubParseCredential = sandbox
@@ -488,16 +584,16 @@ describe("Agent Tests", () => {
           const credData = base64url.baseDecode(base64Data);
           expect(stubParseCredential).to.have.been.calledOnceWith(credData, {
             type: CredentialType.AnonCreds,
-            linkSecret: getLinkSecretResult,
-            credentialMetadata: fetchCredentialMetadataResult,
+            linkSecret: getLinkSecretResult.secret,
+            credentialMetadata: fetchCredentialMetadataResult.toJSON(),
           });
         });
 
         it("Pluto.storeCredential is called with result of parseCredential", async () => {
-          sandbox.stub(pluto, "getLinkSecret").resolves("linkSecret123");
+          sandbox.stub(pluto, "getLinkSecret").resolves(new LinkSecret("linkSecret123"));
           sandbox
-            .stub(pluto, "fetchCredentialMetadata")
-            .resolves({ mock: "CredentialMetadata" } as any);
+            .stub(pluto, "getCredentialMetadata")
+            .resolves(new CredentialMetadata(CredentialType.AnonCreds, "mock", { mock: "CredentialMetadata" }) as any);
           sandbox
             .stub(pollux, "parseCredential")
             .resolves(parseCredentialResult as any);
@@ -517,8 +613,8 @@ describe("Agent Tests", () => {
           sandbox.stub(pluto, "storeCredential").resolves();
           sandbox.stub(pluto, "getLinkSecret").resolves(Fixtures.Credentials.Anoncreds.linkSecret);
           sandbox
-            .stub(pluto, "fetchCredentialMetadata")
-            .resolves(Fixtures.Credentials.Anoncreds.credentialRequestMeta);
+            .stub(pluto, "getCredentialMetadata")
+            .resolves(new CredentialMetadata(CredentialType.AnonCreds, "mock", Fixtures.Credentials.Anoncreds.credentialRequestMeta) as any);
           sandbox
             .stub(pollux, "parseCredential")
             .resolves(parseCredentialResult as any);
@@ -534,8 +630,8 @@ describe("Agent Tests", () => {
         sandbox.stub(pluto, "storeCredential").resolves();
         sandbox.stub(pluto, "getLinkSecret").resolves(Fixtures.Credentials.Anoncreds.linkSecret);
         sandbox
-          .stub(pluto, "fetchCredentialMetadata")
-          .resolves(Fixtures.Credentials.Anoncreds.credentialRequestMeta);
+          .stub(pluto, "getCredentialMetadata")
+          .resolves(new CredentialMetadata(CredentialType.AnonCreds, "mock", Fixtures.Credentials.Anoncreds.credentialRequestMeta) as any);
         sandbox
           .stub(pollux as any, "fetchCredentialDefinition")
           .resolves(Fixtures.Credentials.Anoncreds.credentialDefinition);
@@ -617,11 +713,25 @@ describe("Agent Tests", () => {
         beforeEach(() => {
           stubGetDIDPrivateKeysByDID = sandbox
             .stub(pluto, "getDIDPrivateKeysByDID")
-            .resolves([Fixtures.Keys.ed25519.privateKey as any]);
+            .resolves([Fixtures.Keys.secp256K1.privateKey as any]);
         });
 
         test("JWTCredential + JWTPresentationRequest - returns Presentation", async () => {
-          const credential = JWTCredential.fromJWT({ sub: "did:test:123" }, "");
+          const jwt = new JWT(CastorMock);
+          const payload: JWTCredentialPayload = {
+            iss: "did:prism:da61cf65fbf04b6b9fe06fa3b577fca3e05895a13902decaad419845a20d2d78:Ct8BCtwBEnQKH2F1dGhlbnRpY2F0aW9uYXV0aGVudGljYXRpb25LZXkQBEJPCglzZWNwMjU2azESIP0gMhTAVOk7SgWRluzmeJIjtm2-YMc6AbrD3ePKJQj-GiDZlsa5pQuXGzKvgK10D8SzuDvh79u5oMB7-ZeJNAh-ixJkCg9tYXN0ZXJtYXN0ZXJLZXkQAUJPCglzZWNwMjU2azESIP0gMhTAVOk7SgWRluzmeJIjtm2-YMc6AbrD3ePKJQj-GiDZlsa5pQuXGzKvgK10D8SzuDvh79u5oMB7-ZeJNAh-iw",
+            nbf: 23456754321,
+            exp: 2134564321,
+            sub: "did:prism:da61cf65fbf04b6b9fe06fa3b577fca3e05895a13902decaad419845a20d2d78:Ct8BCtwBEnQKH2F1dGhlbnRpY2F0aW9uYXV0aGVudGljYXRpb25LZXkQBEJPCglzZWNwMjU2azESIP0gMhTAVOk7SgWRluzmeJIjtm2-YMc6AbrD3ePKJQj-GiDZlsa5pQuXGzKvgK10D8SzuDvh79u5oMB7-ZeJNAh-ixJkCg9tYXN0ZXJtYXN0ZXJLZXkQAUJPCglzZWNwMjU2azESIP0gMhTAVOk7SgWRluzmeJIjtm2-YMc6AbrD3ePKJQj-GiDZlsa5pQuXGzKvgK10D8SzuDvh79u5oMB7-ZeJNAh-iw",
+            vc: {} as any
+          }
+          const jwtString = await jwt.sign({
+            issuerDID: DID.fromString("did:prism:da61cf65fbf04b6b9fe06fa3b577fca3e05895a13902decaad419845a20d2d78:Ct8BCtwBEnQKH2F1dGhlbnRpY2F0aW9uYXV0aGVudGljYXRpb25LZXkQBEJPCglzZWNwMjU2azESIP0gMhTAVOk7SgWRluzmeJIjtm2-YMc6AbrD3ePKJQj-GiDZlsa5pQuXGzKvgK10D8SzuDvh79u5oMB7-ZeJNAh-ixJkCg9tYXN0ZXJtYXN0ZXJLZXkQAUJPCglzZWNwMjU2azESIP0gMhTAVOk7SgWRluzmeJIjtm2-YMc6AbrD3ePKJQj-GiDZlsa5pQuXGzKvgK10D8SzuDvh79u5oMB7-ZeJNAh-iw"),
+            privateKey: Fixtures.Keys.secp256K1.privateKey,
+            payload: payload,
+          })
+
+          const credential = JWTCredential.fromJWS(jwtString);
           const request = new RequestPresentation(
             { proofTypes: [] },
             [Fixtures.PresentationRequests.JWTAttachment],
@@ -646,11 +756,11 @@ describe("Agent Tests", () => {
 
           expect(result).to.have.property("from", request.to);
           expect(result).to.have.property("to", request.from);
-          expect(result).to.have.property("thid", request.thid);
+          expect(result).to.have.property("thid", request.thid || request.id);
         });
 
         test("Attachment format - not JWT - throws", () => {
-          const credential = JWTCredential.fromJWT({ sub: "did:test:123" }, "");
+          const credential = JWTCredential.fromJWS(Fixtures.Credentials.JWT.credentialPayloadEncoded);
           const request = new RequestPresentation(
             { proofTypes: [] },
             [{ ...Fixtures.PresentationRequests.JWTAttachment, format: "wrong" }],
@@ -663,8 +773,23 @@ describe("Agent Tests", () => {
           expect(result).to.eventually.be.rejected;
         });
 
-        test("Credential.subjectDID - invalid - throws", () => {
-          const credential = JWTCredential.fromJWT({}, "");
+        test("Credential.subjectDID - invalid - throws", async () => {
+
+          const jwt = new JWT(CastorMock);
+          const payload: JWTCredentialPayload = {
+            iss: "did:test:123",
+            sub: undefined as any,
+            nbf: 23456754321,
+            exp: 2134564321,
+            vc: {} as any
+          }
+          const jwtString = await jwt.sign({
+            issuerDID: DID.fromString("did:issuer:123"),
+            privateKey: Fixtures.Keys.secp256K1.privateKey,
+            payload: payload,
+          })
+
+          const credential = JWTCredential.fromJWS(jwtString);
           const request = new RequestPresentation(
             { proofTypes: [] },
             [Fixtures.PresentationRequests.JWTAttachment],
@@ -677,10 +802,24 @@ describe("Agent Tests", () => {
           expect(result).to.eventually.be.rejected;
         });
 
-        test("Credential.subjectDID - doesn't match PrivateKey - throws", () => {
+        test("Credential.subjectDID - doesn't match PrivateKey - throws", async () => {
           stubGetDIDPrivateKeysByDID.resolves([]);
 
-          const credential = JWTCredential.fromJWT({ sub: "did:test:123" }, "");
+          const jwt = new JWT(CastorMock);
+          const payload: JWTCredentialPayload = {
+            iss: "did:test:123",
+            nbf: 23456754321,
+            exp: 2134564321,
+            sub: "did:test:123",
+            vc: {} as any
+          }
+          const jwtString = await jwt.sign({
+            issuerDID: DID.fromString("did:issuer:123"),
+            privateKey: Fixtures.Keys.secp256K1.privateKey,
+            payload: payload,
+          })
+
+          const credential = JWTCredential.fromJWS(jwtString);
           const request = new RequestPresentation(
             { proofTypes: [] },
             [Fixtures.PresentationRequests.JWTAttachment],
@@ -695,8 +834,22 @@ describe("Agent Tests", () => {
       });
 
       describe("Fail cases", () => {
-        test("RequestPresentation.attachments - empty - throws", () => {
-          const credential = JWTCredential.fromJWT({ sub: "did:test:123" }, "");
+        test("RequestPresentation.attachments - empty - throws", async () => {
+          const jwt = new JWT(CastorMock);
+          const payload: JWTCredentialPayload = {
+            iss: "did:test:123",
+            nbf: 23456754321,
+            exp: 2134564321,
+            sub: "did:test:123",
+            vc: {} as any
+          }
+          const jwtString = await jwt.sign({
+            issuerDID: DID.fromString("did:issuer:123"),
+            privateKey: Fixtures.Keys.secp256K1.privateKey,
+            payload: payload,
+          })
+
+          const credential = JWTCredential.fromJWS(jwtString);
           const request = new RequestPresentation(
             { proofTypes: [] },
             [],
@@ -709,17 +862,31 @@ describe("Agent Tests", () => {
           expect(result).to.eventually.be.rejected;
         });
 
-        test("Credential - not matched - throws", () => {
+        test("Credential - not matched - throws", async () => {
           const request = new RequestPresentation(
             { proofTypes: [] },
             [Fixtures.PresentationRequests.JWTAttachment],
             didFrom,
             didTo
           );
+          const payload: JWTCredentialPayload = {
+            iss: "did:test:123",
+            nbf: 23456754321,
+            exp: 2134564321,
+            sub: Fixtures.DIDs.prismDIDDefault.toString(),
+            vc: {} as any
+          }
+          const jwt = new JWT(CastorMock);
+          const jwtString = await jwt.sign({
+            issuerDID: DID.fromString("did:issuer:123"),
+            privateKey: Fixtures.Keys.secp256K1.privateKey,
+            payload: payload,
+          })
 
-          const result = agent.createPresentationForRequestProof(request, {} as any);
-
+          const credential = JWTCredential.fromJWS(jwtString);
+          const result = agent.createPresentationForRequestProof(request, credential);
           expect(result).to.eventually.be.rejected;
+
         });
       });
     });
